@@ -45,10 +45,10 @@ export default function Navbar() {
     <>
       {/* NAVBAR */}
       <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        className={`fixed top-0 w-full z-50 transition-all duration-300 will-change-transform ${
           scrolled
             ? 'bg-surface/95 backdrop-blur-md shadow-md border-b border-outline'
             : 'bg-transparent'

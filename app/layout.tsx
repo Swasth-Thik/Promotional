@@ -102,9 +102,9 @@ export default function RootLayout({
         {/* Material Symbols Outlined Icon Font */}
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
       </head>
-      <body className="font-body text-on-surface antialiased min-h-screen flex flex-col bg-background">
+      <body className="font-body text-on-surface antialiased min-h-screen flex flex-col bg-background overflow-x-hidden">
         <Navbar />
-        <main className="flex-grow">
+        <main className="flex-grow overflow-x-hidden">
           {children}
         </main>
         <Footer />

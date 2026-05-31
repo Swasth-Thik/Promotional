@@ -384,7 +384,7 @@ export default function Home() {
                   {/* Badges */}
                   <div className='absolute top-4 left-4 flex flex-col gap-2'>
                     <motion.div
-                      initial={{ x: -20, opacity: 0 }}
+                      initial={{ x: 0, opacity: 0 }}
                       whileInView={{ x: 0, opacity: 1 }}
                       transition={{ delay: 0.3 }}
                       className='bg-primary/90 backdrop-blur-sm text-on-primary px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg'
@@ -396,7 +396,7 @@ export default function Home() {
                     </motion.div>
                     {index === 0 && (
                       <motion.div
-                        initial={{ x: -20, opacity: 0 }}
+                        initial={{ x: 0, opacity: 0 }}
                         whileInView={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.4 }}
                         className='bg-accent/90 backdrop-blur-sm text-on-primary px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg'
@@ -496,7 +496,7 @@ export default function Home() {
         <div className='max-w-6xl mx-auto'>
           <div className='grid md:grid-cols-2 gap-12 items-center'>
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
@@ -526,7 +526,7 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: 10 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
@@ -621,8 +621,8 @@ export default function Home() {
               {process.map((step, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
                   viewport={{ once: true }}
                   className={`flex items-center gap-4 md:gap-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
