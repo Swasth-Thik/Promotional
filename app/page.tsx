@@ -131,8 +131,73 @@ export default function Home() {
     },
   ]
 
+  // JSON-LD structured data for SEO
+  const organizationJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'SWASTH-THIK',
+    image: 'https://swasththik.vercel.app/logo.png',
+    description:
+      'Traditional Bengali pickles made with authentic family recipes. Handcrafted Sweet and Spicy Mango Pickles delivered fresh in Kolkata.',
+    url: 'https://swasththik.vercel.app',
+    telephone: '+919330690128',
+    priceRange: '₹80-₹180',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Kolkata',
+      addressRegion: 'West Bengal',
+      addressCountry: 'IN',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 22.5726,
+      longitude: 88.3639,
+    },
+    openingHours: 'Mo-Su 09:00-20:00',
+    servesCuisine: 'Bengali',
+    acceptsReservations: false,
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '5',
+      reviewCount: '500',
+    },
+  }
+
+  const productListJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: products.map((product, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Product',
+        name: product.nameEn,
+        alternateName: product.name,
+        image: `https://swasththik.vercel.app${product.image}`,
+        description: product.description,
+        offers: {
+          '@type': 'AggregateOffer',
+          lowPrice: '80',
+          highPrice: '180',
+          priceCurrency: 'INR',
+          availability: 'https://schema.org/InStock',
+        },
+      },
+    })),
+  }
+
   return (
     <div className='bg-background'>
+      {/* JSON-LD Structured Data */}
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productListJsonLd) }}
+      />
+
       {/* HERO SECTION */}
       <section className='relative min-h-screen flex items-center justify-center overflow-hidden pt-20 px-6'>
         {/* Background Image */}

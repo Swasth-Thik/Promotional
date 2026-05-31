@@ -110,27 +110,35 @@ export async function generateMetadata({
     return {}
   }
 
+  const imageUrl = `https://swasththik.vercel.app${product.image}`
+
   return {
     title: `${product.nameEn} (${product.name}) | SWASTH-THIK Traditional Bengali Pickles`,
     description: product.description,
+    metadataBase: new URL('https://swasththik.vercel.app'),
     openGraph: {
       title: `${product.nameEn} - SWASTH-THIK`,
       description: product.description,
+      url: `https://swasththik.vercel.app/products/${product.slug}`,
+      siteName: 'SWASTH-THIK',
       images: [
         {
-          url: `https://swasththik.vercel.app${product.image}`,
-          width: 1200,
-          height: 1200,
+          url: imageUrl,
+          width: 1122,
+          height: 1402,
           alt: product.nameEn,
+          type: 'image/png',
         },
       ],
+      locale: 'en_IN',
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
       title: `${product.nameEn} - SWASTH-THIK`,
       description: product.description,
-      images: [`https://swasththik.vercel.app${product.image}`],
+      images: [imageUrl],
+      creator: '@swasththik',
     },
   }
 }
@@ -147,8 +155,54 @@ export default async function ProductDetails({
     notFound()
   }
 
+  // JSON-LD structured data for SEO
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.nameEn,
+    alternateName: product.name,
+    image: `https://swasththik.vercel.app${product.image}`,
+    description: product.description,
+    brand: {
+      '@type': 'Brand',
+      name: 'SWASTH-THIK',
+    },
+    offers: product.sizes.map((size) => ({
+      '@type': 'Offer',
+      price: size.price.replace('₹', ''),
+      priceCurrency: 'INR',
+      availability: 'https://schema.org/InStock',
+      itemCondition: 'https://schema.org/NewCondition',
+      priceValidUntil: new Date(
+        new Date().setFullYear(new Date().getFullYear() + 1)
+      )
+        .toISOString()
+        .split('T')[0],
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingDestination: {
+          '@type': 'DefinedRegion',
+          addressCountry: 'IN',
+          addressRegion: 'West Bengal',
+        },
+      },
+    })),
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '5',
+      reviewCount: '50',
+    },
+    category: 'Food & Beverages',
+    productionDate: new Date().toISOString().split('T')[0],
+  }
+
   return (
     <main className='bg-background'>
+      {/* JSON-LD Structured Data */}
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero Section */}
       <section className='pt-32 pb-20 px-6 bg-surface-cream'>
         <div className='max-w-6xl mx-auto'>

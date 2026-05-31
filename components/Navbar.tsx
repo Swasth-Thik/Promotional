@@ -62,7 +62,7 @@ export default function Navbar() {
             className='flex items-center gap-3'
           >
             <img
-              src='/logo (3).png'
+              src='/logo.png'
               alt='Swasth-Thik Logo'
               className='h-12 lg:h-14 w-auto'
             />

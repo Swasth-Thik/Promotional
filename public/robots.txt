@@ -1,0 +1,12 @@
+# robots.txt for SWASTH-THIK
+# Allow all crawlers
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://swasththik.vercel.app/sitemap.xml
+
+# Disallow admin or private paths if any
+# User-agent: *
+# Disallow: /admin/
