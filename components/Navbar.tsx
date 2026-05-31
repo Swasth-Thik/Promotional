@@ -1,207 +1,257 @@
-"use client";
-import Link from "next/link";
-import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+'use client'
+import Link from 'next/link'
+import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   // Close menu on resize
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) setIsOpen(false);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+      if (window.innerWidth >= 768) setIsOpen(false)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   // Lock scroll when menu open
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "auto";
-  }, [isOpen]);
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto'
+  }, [isOpen])
 
   // Helper for active link
   const getLinkClass = (path: string, isExact = false) => {
-    const isActive = isExact
-      ? pathname === path
-      : pathname.startsWith(path);
+    const isActive = isExact ? pathname === path : pathname.startsWith(path)
 
     return isActive
-      ? "text-[#610000] font-bold border-b-2 border-[#610000] pb-1"
-      : "text-stone-600 hover:text-[#610000] transition-colors";
-  };
+      ? 'text-primary font-bold border-b-2 border-primary pb-1'
+      : 'text-text-muted hover:text-primary transition-colors duration-300'
+  }
 
   return (
     <>
       {/* NAVBAR */}
-      <nav
-        className="fixed top-0 w-full z-[60] border-b border-[#e3beb8]/30 shadow-sm"
-        style={{
-          backgroundColor: "rgba(253, 247, 255, 0.95)",
-          backdropFilter: "blur(16px)",
-        }}
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+          scrolled
+            ? 'bg-surface/95 backdrop-blur-md shadow-md border-b border-outline'
+            : 'bg-transparent'
+        }`}
       >
-        <div className="flex items-center px-6 py-4 max-w-screen-2xl mx-auto justify-between">
+        <div className='flex items-center px-6 lg:px-12 py-4 max-w-7xl mx-auto justify-between'>
           {/* LOGO */}
           <Link
-            href="/"
+            href='/'
             onClick={() => setIsOpen(false)}
-            className="text-2xl font-headline font-bold tracking-tight text-[#610000]"
+            className='flex items-center gap-3'
           >
-            Swasth Thik
+            <img
+              src='/logo (3).png'
+              alt='Swasth-Thik Logo'
+              className='h-12 lg:h-14 w-auto'
+            />
+            <div className='flex flex-col'>
+              <span className='text-xl lg:text-2xl font-headline font-bold text-primary tracking-tight'>
+                SWASTH-THIK
+              </span>
+              <span className='hidden sm:block text-[9px] text-accent font-sans tracking-[0.15em] uppercase'>
+                Authentic Recipes, Homemade Goodness
+              </span>
+            </div>
           </Link>
 
           {/* DESKTOP MENU */}
-          <div className="md:flex gap-8 items-center hidden font-headline text-sm tracking-widest uppercase">
-            <Link href="/" className={getLinkClass("/", true)}>
+          <div className='hidden md:flex gap-8 items-center font-sans text-sm font-medium'>
+            <Link href='/' className={getLinkClass('/', true)}>
               Home
             </Link>
-            <Link href="/products" className={getLinkClass("/products")}>
-              Categories
+            <Link
+              href='/#products'
+              className='text-text-muted hover:text-primary transition-colors duration-300'
+            >
+              Products
             </Link>
-            <Link href="/about" className={getLinkClass("/about", true)}>
-              Story
+            <Link
+              href='/#story'
+              className='text-text-muted hover:text-primary transition-colors duration-300'
+            >
+              Our Story
             </Link>
-            <Link href="/#reviews" className={getLinkClass("/", true)}>
+            <Link
+              href='/#reviews'
+              className='text-text-muted hover:text-primary transition-colors duration-300'
+            >
               Reviews
             </Link>
-            <Link href="/contact" className={getLinkClass("/contact", true)}>
-              Contact
-            </Link>
+            <a
+              href='https://wa.me/919330690128'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='bg-primary text-on-primary px-6 py-2.5 rounded-full font-semibold hover:bg-primary-light transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2'
+            >
+              <span className='material-symbols-outlined text-lg'>chat</span>
+              Order on WhatsApp
+            </a>
           </div>
 
-          {/* MOBILE BUTTON */}
+          {/* MOBILE MENU BUTTON */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden z-[70] p-2 text-[#610000]"
+            className='md:hidden z-[60] p-2 text-primary hover:bg-surface-container rounded-lg transition-colors'
+            aria-label='Toggle menu'
           >
-            <span className="material-symbols-outlined text-3xl">
-              {isOpen ? "close" : "menu"}
+            <span className='material-symbols-outlined text-3xl'>
+              {isOpen ? 'close' : 'menu'}
             </span>
           </button>
         </div>
-      </nav>
+      </motion.nav>
 
-      {/* BACKDROP */}
-      <div
-        onClick={() => setIsOpen(false)}
-        className={`fixed inset-0 bg-black/30 backdrop-blur-sm z-[50] transition-opacity duration-300 ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
-      />
-
-      {/* PREMIUM RIGHT DRAWER */}
-      <div
-        className={`fixed top-0 right-0 h-full w-full z-[60] 
-  bg-[#fdf7f5] shadow-2xl 
-  transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]
-  ${isOpen ? "translate-x-0" : "translate-x-full"}`}
-      >
-        {/* HEADER */}
-        <div className="flex items-start justify-between px-6 pt-6 pb-4">
-          <div>
-            <h2 className="text-xl font-headline font-bold tracking-tight text-[#610000]">
-              Swasth Thik
-            </h2>
-            <p className="text-[10px] tracking-widest text-stone-500 uppercase mt-1">
-              Homemade Collective
-            </p>
-          </div>
-
-          <button onClick={() => setIsOpen(false)}>
-            <span className="material-symbols-outlined text-2xl text-[#7a5c58]">
-              close
-            </span>
-          </button>
-        </div>
-
-        {/* MAIN MENU */}
-        <div className="flex flex-col gap-3 px-4 mt-4 font-headline uppercase tracking-widest text-sm">
-
-          {/* ACTIVE ITEM */}
-          <Link
-            href="/"
+      {/* MOBILE MENU BACKDROP */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
             onClick={() => setIsOpen(false)}
-            className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${pathname === "/"
-              ? "bg-[#e8d6d3] text-[#610000] font-bold"
-              : "text-stone-600 hover:text-[#610000]"
-              }`}
+            className='fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden'
+          />
+        )}
+      </AnimatePresence>
+
+      {/* MOBILE MENU DRAWER */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className='fixed top-0 right-0 h-full w-[85%] max-w-sm z-50 bg-surface shadow-2xl md:hidden'
           >
-            <span className="material-symbols-outlined text-[20px]">
-              home
-            </span>
-            Home
-          </Link>
+            {/* HEADER */}
+            <div className='flex items-center justify-between px-6 py-6 border-b border-outline'>
+              <div>
+                <h2 className='text-xl font-headline font-bold text-primary'>
+                  SWASTH-THIK
+                </h2>
+                <p className='text-[10px] tracking-widest text-accent uppercase mt-1'>
+                  Homemade Goodness
+                </p>
+              </div>
+              <button
+                onClick={() => setIsOpen(false)}
+                className='p-2 hover:bg-surface-container rounded-lg transition-colors'
+              >
+                <span className='material-symbols-outlined text-2xl text-primary'>
+                  close
+                </span>
+              </button>
+            </div>
 
-          <Link
-            href="/products"
-            onClick={() => setIsOpen(false)}
-            className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${pathname.startsWith("/products")
-              ? "bg-[#e8d6d3] text-[#610000] font-bold"
-              : "text-stone-600 hover:text-[#610000]"
-              }`}
-          >
-            <span className="material-symbols-outlined text-[20px]">
-              category
-            </span>
-            Categories
-          </Link>
+            {/* MENU LINKS */}
+            <div className='flex flex-col gap-2 px-4 mt-6 font-sans'>
+              <Link
+                href='/'
+                onClick={() => setIsOpen(false)}
+                className={`flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all ${
+                  pathname === '/'
+                    ? 'bg-surface-container text-primary font-semibold'
+                    : 'text-text-muted hover:bg-surface-container-low hover:text-primary'
+                }`}
+              >
+                <span className='material-symbols-outlined text-xl'>home</span>
+                Home
+              </Link>
 
-          <Link
-            href="/about"
-            onClick={() => setIsOpen(false)}
-            className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${pathname === "/about"
-              ? "bg-[#e8d6d3] text-[#610000] font-bold"
-              : "text-stone-600 hover:text-[#610000]"
-              }`}
-          >
-            <span className="material-symbols-outlined text-[20px]">
-              menu_book
-            </span>
-            Story
-          </Link>
+              <Link
+                href='/#products'
+                onClick={() => setIsOpen(false)}
+                className='flex items-center gap-3 px-4 py-3.5 rounded-xl text-text-muted hover:bg-surface-container-low hover:text-primary transition-all'
+              >
+                <span className='material-symbols-outlined text-xl'>
+                  shopping_bag
+                </span>
+                Products
+              </Link>
 
-          <Link
-            href="/#reviews"
-            onClick={() => setIsOpen(false)}
-            className="flex items-center gap-3 px-4 py-3 rounded-xl text-stone-600 hover:text-[#610000] transition-colors"
-          >
-            <span className="material-symbols-outlined text-[20px]">
-              star
-            </span>
-            Reviews
-          </Link>
+              <Link
+                href='/#story'
+                onClick={() => setIsOpen(false)}
+                className='flex items-center gap-3 px-4 py-3.5 rounded-xl text-text-muted hover:bg-surface-container-low hover:text-primary transition-all'
+              >
+                <span className='material-symbols-outlined text-xl'>
+                  menu_book
+                </span>
+                Our Story
+              </Link>
 
-          <Link
-            href="/contact"
-            onClick={() => setIsOpen(false)}
-            className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${pathname === "/contact"
-              ? "bg-[#e8d6d3] text-[#610000] font-bold"
-              : "text-stone-600 hover:text-[#610000]"
-              }`}
-          >
-            <span className="material-symbols-outlined text-[20px]">
-              call
-            </span>
-            Contact
-          </Link>
-        </div>
+              <Link
+                href='/#reviews'
+                onClick={() => setIsOpen(false)}
+                className='flex items-center gap-3 px-4 py-3.5 rounded-xl text-text-muted hover:bg-surface-container-low hover:text-primary transition-all'
+              >
+                <span className='material-symbols-outlined text-xl'>star</span>
+                Reviews
+              </Link>
 
+              <a
+                href='https://wa.me/919330690128'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='flex items-center justify-center gap-2 px-4 py-3.5 mt-4 bg-primary text-on-primary rounded-xl font-semibold hover:bg-primary-light transition-all shadow-md'
+              >
+                <span className='material-symbols-outlined text-xl'>chat</span>
+                Order on WhatsApp
+              </a>
+            </div>
 
-
-        {/* FOOTER */}
-        <div className="absolute bottom-6 left-6 right-6">
-          <div className="flex gap-5 text-[#610000] mb-4">
-            <span className="material-symbols-outlined">share</span>
-            <span className="material-symbols-outlined">language</span>
-            <span className="material-symbols-outlined">mail</span>
-          </div>
-
-          <p className="text-xs text-[#a78a86]">
-            © 2026 Swasth Thik
-          </p>
-        </div>
-      </div>
+            {/* FOOTER INFO */}
+            <div className='absolute bottom-6 left-6 right-6 border-t border-outline pt-6'>
+              <p className='text-xs text-text-muted mb-3'>Connect with us:</p>
+              <div className='flex gap-4 mb-4'>
+                <a
+                  href='#'
+                  className='w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-all'
+                >
+                  <span className='material-symbols-outlined text-lg'>
+                    share
+                  </span>
+                </a>
+                <a
+                  href='#'
+                  className='w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-all'
+                >
+                  <span className='material-symbols-outlined text-lg'>
+                    mail
+                  </span>
+                </a>
+              </div>
+              <p className='text-xs text-text-muted'>
+                © 2026 Swasth-Thik. All rights reserved.
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
-  );
+  )
 }

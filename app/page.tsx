@@ -1,302 +1,826 @@
-import Link from 'next/link';
-import Image from 'next/image';
+'use client'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { useState } from 'react'
 
 export default function Home() {
+  const [openFaq, setOpenFaq] = useState<number | null>(null)
+
+  const products = [
+    {
+      id: 1,
+      slug: 'sweet-mango-pickle',
+      name: 'মিষ্টি আমের আচার',
+      nameEn: 'Sweet Mango Pickle',
+      sizes: [
+        { weight: '200g', price: '₹80' },
+        { weight: '500g', price: '₹180' },
+      ],
+      image: '/sweet-mango-pickle.png',
+      description:
+        'Handcrafted with sun-ripened Bengali mangoes, jaggery, and traditional spices.',
+    },
+    {
+      id: 2,
+      slug: 'spicy-mango-pickle',
+      name: 'ঝাল আমের আচার',
+      nameEn: 'Spicy Mango Pickle',
+      sizes: [
+        { weight: '200g', price: '₹80' },
+        { weight: '500g', price: '₹180' },
+      ],
+      image: '/spicy-mango-pickle.png',
+      description:
+        'Fiery and flavorful traditional Bengali pickle made with raw mangoes, mustard oil, and aromatic spices.',
+    },
+  ]
+
+  const whyChoose = [
+    {
+      icon: 'home',
+      title: 'Homemade',
+      description:
+        'Prepared in small batches in our home kitchen with love and care',
+    },
+    {
+      icon: 'restaurant',
+      title: 'Traditional Bengali Recipe',
+      description: 'Authentic family recipes passed down through generations',
+    },
+    {
+      icon: 'eco',
+      title: 'Quality Ingredients',
+      description:
+        'Only the finest mangoes and pure mustard oil from local sources',
+    },
+    {
+      icon: 'verified',
+      title: 'Hygienic Preparation',
+      description:
+        'Prepared in clean, sanitized conditions following food safety standards',
+    },
+  ]
+
+  const process = [
+    {
+      icon: 'nutrition',
+      title: 'Fresh Mangoes',
+      description: 'Handpicked raw mangoes at peak freshness',
+    },
+    {
+      icon: 'local_florist',
+      title: 'Traditional Spices',
+      description: 'Aromatic blend of Bengali spices',
+    },
+    {
+      icon: 'favorite',
+      title: 'Homemade Preparation',
+      description: 'Lovingly prepared using traditional methods',
+    },
+    {
+      icon: 'package',
+      title: 'Fresh Packaging',
+      description: 'Sealed in clean jars to preserve freshness',
+    },
+  ]
+
+  const reviews = [
+    {
+      name: 'Priya Chatterjee',
+      location: 'Kolkata',
+      image: 'https://i.pravatar.cc/150?img=1',
+      rating: 5,
+      text: 'The sweet mango pickle tastes exactly like my grandmother used to make! The balance of sweetness and spices is perfect.',
+    },
+    {
+      name: 'Amit Das',
+      location: 'Mumbai',
+      image: 'https://i.pravatar.cc/150?img=12',
+      rating: 5,
+      text: 'Best Bengali pickle I have found online! The spicy version has the right amount of heat and the mustard oil flavor is authentic.',
+    },
+    {
+      name: 'Anjali Roy',
+      location: 'Delhi',
+      image: 'https://i.pravatar.cc/150?img=5',
+      rating: 5,
+      text: 'Reminds me of home! The quality is excellent and the taste is genuinely homemade. Will definitely order again.',
+    },
+  ]
+
+  const faqs = [
+    {
+      question: 'What is the shelf life of the pickles?',
+      answer:
+        'Our pickles have a shelf life of 8-12 months when stored properly. Keep them in a cool, dry place away from direct sunlight. Always use a clean, dry spoon to avoid contamination.',
+    },
+    {
+      question: 'How should I store the pickles?',
+      answer:
+        'Store in a cool, dry place away from direct sunlight. Once opened, ensure the lid is tightly closed after each use and always use a clean, dry spoon. Refrigeration is not necessary but can extend freshness.',
+    },
+    {
+      question: 'Do you deliver to my location?',
+      answer:
+        'Currently, we provide delivery services within Kolkata and nearby areas. We use reliable local delivery partners to ensure your pickles reach you fresh and in perfect condition. Same-day or next-day delivery available for most areas in Kolkata.',
+    },
+    {
+      question: 'What ingredients do you use?',
+      answer:
+        'We use only natural ingredients: fresh raw mangoes, pure mustard oil, traditional Bengali spices (mustard seeds, fenugreek, turmeric, red chili), jaggery (for sweet pickle), and salt. No artificial preservatives or colors.',
+    },
+  ]
+
   return (
-    <>
-      {/* Hero Section */}
-      <header className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-        <div className="absolute inset-0 z-0 bg-stone-900">
-          <img 
-            className="w-full h-full object-cover opacity-80" 
-            alt="High-end editorial food photography of sun-dried Indian spices like turmeric, chilies, and cardamom spread across a textured linen background with warm natural sunlight" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDquIYXdSrpU8LhyzbDCoW9aR2RMjKEA2Vt2AzPTW9-54476Pn05fvvlYGsD0CmN-U45lGk6f_L-YWwXWCvji4kW4Cuc0p2JYvYxcXjzMIUWxRd-NydnFIn-BXl97nhayMsneEFiaFdq2OmjNkZqgODuu33t-gv4VzQcH4c2C205ut9KJ9XUhS3kzWmWWdH8bSEdaTkKVf3iwSwzsPeXZCVYDA47xwJgDvcyCTnppMqS_WivI9NN0X8jJCSBynK2mqZUl6gXQK9aq4" 
+    <div className='bg-background'>
+      {/* HERO SECTION */}
+      <section className='relative min-h-screen flex items-center justify-center overflow-hidden pt-20 px-6'>
+        {/* Background Image */}
+        <div className='absolute inset-0'>
+          <img
+            src='/banner1.png'
+            alt='Traditional Bengali Pickles Background'
+            className='w-full h-full object-cover'
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent"></div>
+          <div className='absolute inset-0 bg-gradient-to-r from-background/95 via-background/85 to-background/60'></div>
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <div className="max-w-2xl">
-            <span className="text-primary font-bold tracking-[0.2em] uppercase text-sm mb-4 block">Handcrafted with Love</span>
-            <h1 className="text-6xl md:text-8xl font-black text-primary leading-tight mb-6 -ml-1">Ghar jaisa swaad,<br/>har jar mein</h1>
-            <p className="text-xl text-on-surface-variant mb-10 font-medium leading-relaxed">Experience the purity of traditional Indian flavors, preserved using age-old family recipes and sun-kissed ingredients.</p>
-            <div className="flex flex-wrap gap-4">
-              <Link className="bg-primary text-on-primary px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-primary/20 transition-all" href="/products">
-                View Products
-              </Link>
-              <Link className="border border-outline-variant/30 text-primary px-10 py-4 rounded-full font-bold text-lg hover:bg-surface-container transition-all backdrop-blur-sm" href="/contact">
-                Contact Us
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="absolute bottom-10 right-10 hidden lg:block max-w-xs p-6 bg-surface-container-lowest/80 backdrop-blur-md rounded-xl shadow-2xl border border-outline-variant/10">
-          <div className="flex items-center gap-4 mb-3">
-            <span className="material-symbols-outlined text-secondary" style={{ fontVariationSettings: '"FILL" 1' }}>eco</span>
-            <span className="font-bold text-tertiary">100% Organic Ingredients</span>
-          </div>
-          <p className="text-sm text-on-surface-variant">No artificial colors, flavors, or chemical preservatives. Just the way grandma made it.</p>
-        </div>
-      </header>
 
-      {/* Why Choose Us - Bento Style */}
-      <section className="py-16 md:py-24 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="md:col-span-2 p-10 bg-surface-container-low rounded-[2rem] flex flex-col justify-between group overflow-hidden relative">
-            <div className="relative z-10">
-              <span className="material-symbols-outlined text-5xl text-primary mb-6">workspace_premium</span>
-              <h3 className="text-3xl font-bold text-primary mb-4">No Preservatives</h3>
-              <p className="text-on-surface-variant max-w-xs">We believe in the power of natural preservation. Our pickles and squashes stay fresh using traditional fermentation and sun-drying techniques.</p>
-            </div>
-            <div className="absolute -right-10 -bottom-10 opacity-10 group-hover:scale-110 transition-transform duration-500">
-              <span className="material-symbols-outlined text-[15rem]" style={{ fontVariationSettings: '"FILL" 1' }}>nature_people</span>
-            </div>
-          </div>
-          <div className="p-10 bg-surface-container rounded-[2rem] flex flex-col items-center text-center justify-center">
-            <span className="material-symbols-outlined text-5xl text-secondary mb-6">back_hand</span>
-            <h3 className="text-xl font-bold text-on-surface mb-2">Handmade</h3>
-            <p className="text-sm text-on-surface-variant">Crafted in small batches to ensure artisanal quality.</p>
-          </div>
-          <div className="p-10 bg-tertiary-fixed rounded-[2rem] flex flex-col items-center text-center justify-center">
-            <span className="material-symbols-outlined text-5xl text-tertiary-container mb-6">restaurant</span>
-            <h3 className="text-xl font-bold text-tertiary-container mb-2">Authentic Taste</h3>
-            <p className="text-sm text-tertiary-container/70">Recipes passed down through four generations.</p>
-          </div>
-          <div className="md:col-span-2 p-10 bg-secondary-container/30 rounded-[2rem] flex items-center gap-8 border border-secondary-container/20">
-            <div className="flex-shrink-0 w-24 h-24 bg-secondary-container rounded-full flex items-center justify-center">
-              <span className="material-symbols-outlined text-4xl text-on-secondary-container">local_florist</span>
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-on-secondary-container mb-2">Fresh Ingredients</h3>
-              <p className="text-on-secondary-container/80">Sourced directly from local farmers during peak season to capture maximum flavor and nutrition.</p>
-            </div>
-          </div>
-          <div className="md:col-span-2 h-[200px] rounded-[2rem] overflow-hidden">
-            <img className="w-full h-full object-cover" alt="Macro photography of fresh green mangoes and vibrant red chilies on a weathered wooden surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3YaMDqWwNj92SyRz-7NDRn5HESTg68Z5XvcJuTPJMcVdXH34STwF48maEPpOrV_IGWsio_RXSwj-6sNtl3g2iP54yiKNrbTJDfcqDl8dVGbRH0LgiV75WCLWJrW8qxhlxJ0z0b2TPUuPd7YUBRCjC0lC1O3hNlPzb0UFgGFgpedOANi5yuX0MvIC7-Ql49GSjslRGhEF0YYtdjxxQXyJ-116iEcweeJixS5D3BI1Bzr3ShDO5yYJ-i5iqieszYPGGC8J5hfP_2mo" />
-          </div>
-        </div>
-      </section>
+        <div className='relative z-10 max-w-6xl mx-auto text-center'>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            {/* Trust Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className='inline-flex items-center gap-2 px-5 py-2.5 bg-surface-container rounded-full text-sm font-semibold text-primary mb-6 shadow-lg border border-outline/30'
+            >
+              <span
+                className='material-symbols-outlined text-accent text-base'
+                style={{ fontVariationSettings: '"FILL" 1' }}
+              >
+                star
+              </span>
+              <span>500+ Happy Customers</span>
+              <span className='w-1.5 h-1.5 rounded-full bg-accent'></span>
+              <span>100% Authentic</span>
+            </motion.div>
 
-      {/* Categories */}
-      <section className="py-16 md:py-24 bg-surface-container-lowest" id="categories">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-end mb-16">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">Explore Our Pantry</h2>
-              <p className="text-on-surface-variant">The finest selection of tradition in every category.</p>
-            </div>
-            <div className="hidden md:block">
-              <div className="w-24 h-1 bg-primary/20 rounded-full"></div>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            <Link href="/products" className="group relative aspect-[3/4] rounded-3xl overflow-hidden cursor-pointer">
-              <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Close-up of traditional ceramic pickle jars" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDy2rsrzGMwD0vDmah7QvmHy53QNUQ4tJNpvIUR4tFY7pUBusWJmli-FLNZUJLtu396PFT3efLRrtJJWusJG5Ijs8L0bhAVHAXy1noq6fOztKvuYAjvKCUWV-ly8uLbM95-v_bweKm5GHOknJXj2uiVH7CDCesOnaHnpHIGU-6Js0wW9DGDmm68dEZkBExSA6g0kZ210ZmXkeFWErLojjIfu62BBDg8Gg-Ns8H2f85E25cNLLnHXY9_qUM4yWjmGb86VnScml3RBuk" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
-                <h4 className="text-white text-2xl font-bold font-serif">Achar</h4>
-                <p className="text-white/70 text-sm opacity-0 group-hover:opacity-100 transition-opacity">12 Varieties</p>
-              </div>
-            </Link>
-            <Link href="/products" className="group relative aspect-[3/4] rounded-3xl overflow-hidden cursor-pointer mt-8 md:mt-12">
-              <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Golden liquid cow ghee" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLuZTm1ErEcrggryK_nkAkjCkVENmY8N2MAc7IlY5fdc6ms9ZiaIqXAteNajNs-XnCjZMP73YIdvDaawJfrVDQv0O1S5odPNkJQgbOQRhHZBowbVbMz7VBI1IOJaQWxxhx9_0CdihLk1poD4-GJpV_tzjZn9_AoEAoxwvALSnjXY_kENTYaxY355gizhGMTT5rxENZr0BpY9XtKn15JXsNvwyDjNQm7ddxvTnz2c6s8yAIESGPy0F1J1g-uWsaDb8AVlg_YKZ2vmY" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
-                <h4 className="text-white text-2xl font-bold font-serif">Ghee</h4>
-                <p className="text-white/70 text-sm opacity-0 group-hover:opacity-100 transition-opacity">A2 Pure Cow</p>
-              </div>
-            </Link>
-            <Link href="/products" className="group relative aspect-[3/4] rounded-3xl overflow-hidden cursor-pointer">
-              <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Refreshing glass bottles of fruit squash" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOEZL9HwZBo0Q-M1ua5SC7pxXdxfpaMdKdrnHVL87kPAfNZ190Svsh5hFrtegcYbU6MCiPhnYjirhPviptHm0AA8w0AxRkpmatKBrOXxHlWRdTh-lsDCWev0Dh-JhEwa11e_Ty0NkefHog-Ia-sJKwSIuACjGadDm0lCGVBo5T_BZdMgyrMtc0JhNGzSUNYxRHiTWTxS-xA-xAEaeQr0SxdSay92Ou4bSK91i6ghAlKG5sKL0GdnpsmP44qDs0H1YFMei8Kpmtseg" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
-                <h4 className="text-white text-2xl font-bold font-serif">Squash</h4>
-                <p className="text-white/70 text-sm opacity-0 group-hover:opacity-100 transition-opacity">Natural Fruit</p>
-              </div>
-            </Link>
-            <Link href="/products" className="group relative aspect-[3/4] rounded-3xl overflow-hidden cursor-pointer mt-8 md:mt-12">
-              <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Small bowls of handcrafted chutneys" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZL19fBzRPTphbyQOlYsiKubI9_8zd3bm8LybuVBTfil8MCeFh4_WY4Zy_ut-1QM9is3piu7myPE6NUSDtCRKMibACG6iJVQ-8Zd2XTM-o0A3Gu14ijffD0Ra3xE9-iWOq0K-vayDcRLCTVPlzHC5QRNipQI_YbBLYLfcW9HBFMCjWKDM4pgdD53VTZok8kBIPN0gZlVKutwdkd6zNtEGcXooMyCXDy9eaUIE82L045VqCSKtfFPJkUQeLZ-y7nJQxo7ayKZuQqB4" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
-                <h4 className="text-white text-2xl font-bold font-serif">Sauces</h4>
-                <p className="text-white/70 text-sm opacity-0 group-hover:opacity-100 transition-opacity">Zesty & Hot</p>
-              </div>
-            </Link>
-            <Link href="/products" className="group relative aspect-[3/4] rounded-3xl overflow-hidden cursor-pointer">
-              <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Assorted dried herbs and spice blends" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUhOMJ1g_TXzBhwODT-3P1WetUMSoqyWwxi50nmzzA1uQh2R7C5loZlwCC6QCS1RisHLEhMJlf18L8FjRWnY7MiRH9rMr7Q8tvfjBxKA_2jay8wGeVkCeS4g_RDhZkwsWc8TQ86N7f_3RhBlfFRGpkBUlbWtM1xVtZ2U0XKqoXuiJXMXV1cd4zc4H9-5hkmlubqbG2UhbfSvLE_ABKLZzaihdTOIdrnMdN9_b_r8ujfCu531idyZdrSgrOxcNuanh0meblsBFXOpM" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
-                <h4 className="text-white text-2xl font-bold font-serif">Others</h4>
-                <p className="text-white/70 text-sm opacity-0 group-hover:opacity-100 transition-opacity">Masalas & More</p>
-              </div>
-            </Link>
-          </div>
-        </div>
-      </section>
+            <h1 className='text-4xl md:text-6xl lg:text-7xl font-headline font-bold text-primary mb-6 leading-tight'>
+              Traditional Bengali Pickles
+              <br />
+              <span className='text-accent'>Made With Love</span>
+            </h1>
 
-      {/* Featured Products Grid */}
-      <section className="py-16 md:py-24 max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">Our Signature Jars</h2>
-          <p className="text-on-surface-variant max-w-xl mx-auto">Handpicked bestsellers that have won the hearts (and plates) of our community.</p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="bg-surface-container-low rounded-[1.5rem] p-4 group transition-all hover:bg-surface hover:shadow-2xl hover:shadow-primary/5">
-            <div className="relative aspect-square rounded-xl overflow-hidden mb-6">
-              <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Spicy Mango Achar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQADcx33JYMUNcb8ZYVg__AtWVUblXEMuNDf-BQe5g-wfiFJX649j2G0oOhqvNoBA0yw5uejGFQ2uEx9wnZ7WfpJisqcIn2AcHk6RB0BTw_2xOEiCOrGo5mHP2FsPVZbYNU9cj6kITGe64jR58IDXg8pqX_aoU_OOQBU_P2GPS22AZdDLqbvMObayn_fiITo6h0Yp2zNtfIjdKcn9Qpwk5ymlbhlJD__zE8-pBkjg14dJyVohCwuVi1BAl3NLn4ip_SuMQPb9yCIQ" />
-              <span className="absolute top-4 left-4 bg-primary text-on-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Bestseller</span>
-            </div>
-            <div className="px-2">
-              <h3 className="text-xl font-bold text-on-surface mb-1">Spicy Mango Achar</h3>
-              <p className="text-sm text-on-surface-variant mb-4 line-clamp-2">The classic tang of sun-ripened mangoes infused with cold-pressed mustard oil and secret spices.</p>
-              <Link href="/products/1" className="w-full bg-surface-container-highest text-primary py-3 rounded-full font-bold text-sm hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center gap-2">
-                Enquire Now <span className="material-symbols-outlined text-lg">arrow_forward</span>
-              </Link>
-            </div>
-          </div>
-          <div className="bg-surface-container-low rounded-[1.5rem] p-4 group transition-all hover:bg-surface hover:shadow-2xl hover:shadow-primary/5">
-            <div className="relative aspect-square rounded-xl overflow-hidden mb-6">
-              <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Pure Cow Ghee" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfl2sZSIWPhgA2vAazAoR6u3t7gfV0vltYoANJEbjcbitaHv2Q1CnAmMtrJuf7Kmd6r1K3AxGywYJt7L62Uh_flU3fSwyOmu7GV4MZTwybO6Tt8Rm4jLtuZe-jSgjMaFdhkcXvebCFs0k5h91GItNtn0C6rWEiONhszRBNgnTrK5kiuPvzMMRsGWi-TbRkUYXHtzdFEI54nDSDu_wdAA1VxpluTUKLiUHGgWOJ8l0HHJ6v4pFiNYftvZZUHY6tPnHio_n6O3gfUvA" />
-            </div>
-            <div className="px-2">
-              <h3 className="text-xl font-bold text-on-surface mb-1">Pure Cow Ghee</h3>
-              <p className="text-sm text-on-surface-variant mb-4 line-clamp-2">Slow-cooked A2 cow milk fat with a rich granular texture and heavenly aroma.</p>
-              <Link href="/products/2" className="w-full bg-surface-container-highest text-primary py-3 rounded-full font-bold text-sm hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center gap-2">
-                Enquire Now <span className="material-symbols-outlined text-lg">arrow_forward</span>
-              </Link>
-            </div>
-          </div>
-          <div className="bg-surface-container-low rounded-[1.5rem] p-4 group transition-all hover:bg-surface hover:shadow-2xl hover:shadow-primary/5">
-            <div className="relative aspect-square rounded-xl overflow-hidden mb-6">
-              <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Khatta Meetha Nimbu" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOCj_jDWpyWGQs_BAlR9TbnZUS-d-2Qbt3uhA2trgNWrzhbyBu3B1ciYO8wZA-SXXdkwhBKv44LdUThbG1e4mG_qzLYVENg75-AMJVJkAorsyVvoACYjmQqh9uqDmkYetpotVFZ8ifNG5bIZ1t9if01_3u74BPpExNmTlF_MV-9BYCbzWrfKVYbNgZH35LQyw4a1vpFzn01qXmblabUu0I2Ouh-dE-H_FaFy39ZsvbZ0g-AqPoNib4uI9FZ5hRYY1I3az9F29lIE8" />
-            </div>
-            <div className="px-2">
-              <h3 className="text-xl font-bold text-on-surface mb-1">Khatta Meetha Nimbu</h3>
-              <p className="text-sm text-on-surface-variant mb-4 line-clamp-2">Zesty lemon quarters balanced with jaggery and roasted cumin. Oil-free goodness.</p>
-              <Link href="/products/3" className="w-full bg-surface-container-highest text-primary py-3 rounded-full font-bold text-sm hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center gap-2">
-                Enquire Now <span className="material-symbols-outlined text-lg">arrow_forward</span>
-              </Link>
-            </div>
-          </div>
-          <div className="bg-surface-container-low rounded-[1.5rem] p-4 group transition-all hover:bg-surface hover:shadow-2xl hover:shadow-primary/5">
-            <div className="relative aspect-square rounded-xl overflow-hidden mb-6">
-              <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Garlic Lal Mirch" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAI-Kl3u1Ys2Ag2QpHWa1ZRT9EFEop3Op1H6Wm6rxcReIEW8ThZPbPlXD2DSS4HUUEWjvDbq5ZwKpBrNzpApCBDoxO4PRyjY0qfR8xdbK4NyJrk3WUJyKao5bukJw4K0Gb8w0nxobAzVpIMQg78YIqS_kRRfGc-vDzX8Z1WAZZ6owjS6w7uz87MzJnd_b9LCHQvy34rl5lL7paAWg-V-6OUt4aXLoFy6enb-w6eNQ0w1qyP1ZU06msUB2sDe0EzU8fIGNJ3iCif5ag" />
-            </div>
-            <div className="px-2">
-              <h3 className="text-xl font-bold text-on-surface mb-1">Garlic Lal Mirch</h3>
-              <p className="text-sm text-on-surface-variant mb-4 line-clamp-2">A bold, smoky blend of roasted garlic and dry Kashmiri red chilies. Perfection for parathas.</p>
-              <Link href="/products/4" className="w-full bg-surface-container-highest text-primary py-3 rounded-full font-bold text-sm hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center gap-2">
-                Enquire Now <span className="material-symbols-outlined text-lg">arrow_forward</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section className="py-16 md:py-24 bg-surface relative overflow-hidden" id="about">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="relative">
-            <div className="absolute -top-10 -left-10 w-64 h-64 bg-secondary-container/20 rounded-full blur-3xl"></div>
-            <div className="relative z-10 aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl">
-              <img className="w-full h-full object-cover" alt="Authentic vintage-style photo of an Indian woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3G10bY8bl9gtnEebYfd3WqCgLNH4qDTvRlxlVC0rsaB_h10_ikdX-G_96x1vItL8IAyN0_w3GIvOc0yKSwo7Af8_6lEsO8_SP09s0JZHIyx3kbT_a67x9GWqj81D9j1rOcbhUcd2AO9AfDw5_VzHa3-aEssq40bbep02meqbWCZV8ipEivjJzlhuk3Q0PlYpYq__ynADx9rrqAlIYFpDayTIzyWGD48KCzjKWbVrXiVJBnGgE7eybo6E_cBblbZ6Q_Dsy5ZtzBEs" />
-            </div>
-            <div className="absolute -bottom-6 -right-6 p-8 bg-primary-container text-on-primary-container rounded-[2rem] max-w-[200px]">
-              <p className="font-serif italic text-2xl">Est. 1984</p>
-              <p className="text-xs uppercase tracking-widest mt-2">Authentic Heritage</p>
-            </div>
-          </div>
-          <div className="space-y-8">
-            <h2 className="text-5xl font-bold text-primary leading-tight">Preserving the soul of homemade tradition.</h2>
-            <p className="text-lg text-on-surface-variant leading-relaxed">
-              Swasth Thik was born in a small kitchen with a simple dream: to bring back the purity of the food we grew up with. In an age of industrial processing, we choose the slow way.
+            <p className='text-lg md:text-xl text-text-muted max-w-2xl mx-auto mb-10 leading-relaxed'>
+              Authentic Recipes, Homemade Goodness
+              <br />
+              Experience the taste of traditional Bengali pickles, handcrafted
+              with care
             </p>
-            <div className="space-y-4">
-              <div className="flex items-start gap-4">
-                <span className="material-symbols-outlined text-primary mt-1">check_circle</span>
-                <div>
-                  <h4 className="font-bold text-on-surface">Ethical Sourcing</h4>
-                  <p className="text-sm text-on-surface-variant">We work with small-scale farmers to ensure every ingredient is chemical-free and fairly traded.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <span className="material-symbols-outlined text-primary mt-1">check_circle</span>
-                <div>
-                  <h4 className="font-bold text-on-surface">Sun-Cured Process</h4>
-                  <p className="text-sm text-on-surface-variant">No machinery can replace the magic of slow sun-drying, which intensifies flavors naturally.</p>
-                </div>
-              </div>
+
+            <div className='flex flex-col sm:flex-row gap-4 justify-center items-center mb-8'>
+              <motion.a
+                href='#products'
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className='bg-primary text-on-primary px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary-light transition-all duration-300 shadow-lg hover:shadow-2xl w-full sm:w-auto flex items-center justify-center gap-2 group'
+              >
+                <span>Shop Now</span>
+                <span className='material-symbols-outlined text-xl group-hover:translate-y-1 transition-transform'>
+                  arrow_downward
+                </span>
+              </motion.a>
+              <motion.a
+                href={`https://wa.me/919330690128?text=${encodeURIComponent("Hello! I'm interested in ordering SWASTH-THIK Traditional Bengali Pickles.\n\nI would like to know more about:\n• Available products and sizes\n• Current pricing\n• Delivery to my location\n\nThank you!")}`}
+                target='_blank'
+                rel='noopener noreferrer'
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className='border-2 border-primary text-primary px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary hover:text-on-primary transition-all duration-300 w-full sm:w-auto flex items-center justify-center gap-2 shadow-lg'
+              >
+                <span className='material-symbols-outlined'>chat</span>
+                Order on WhatsApp
+              </motion.a>
             </div>
-            <div className="pt-6">
-              <div className="border-t border-outline-variant/30 pt-8">
-                <p className="font-serif italic text-xl text-primary">"Food is not just nutrition; it's a bridge to our ancestors. Every jar we seal is a story we share with you."</p>
-                <p className="text-sm font-bold mt-4 uppercase tracking-widest text-on-surface-variant">— Mrs. Shanti Devi, Founder</p>
+
+            {/* Trust Indicators */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className='flex flex-wrap items-center justify-center gap-6 text-sm text-text-muted'
+            >
+              <div className='flex items-center gap-2'>
+                <span className='material-symbols-outlined text-primary text-lg'>
+                  verified
+                </span>
+                <span>100% Natural</span>
               </div>
+              <div className='flex items-center gap-2'>
+                <span className='material-symbols-outlined text-primary text-lg'>
+                  eco
+                </span>
+                <span>100% Organic</span>
+              </div>
+              <div className='flex items-center gap-2'>
+                <span className='material-symbols-outlined text-primary text-lg'>
+                  local_shipping
+                </span>
+                <span>Delivery in Kolkata</span>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1 }}
+          className='absolute bottom-10 left-1/2 -translate-x-1/2'
+        >
+          <motion.a
+            href='#products'
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+            className='flex flex-col items-center gap-2 text-primary/60 hover:text-primary transition-colors cursor-pointer'
+          >
+            <span className='text-xs font-medium'>Scroll to explore</span>
+            <span className='material-symbols-outlined text-2xl'>
+              expand_more
+            </span>
+          </motion.a>
+        </motion.div>
+
+        {/* Decorative Elements */}
+        <div className='absolute top-20 left-10 w-20 h-20 bg-accent/10 rounded-full blur-3xl animate-pulse' />
+        <div className='absolute bottom-20 right-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl animate-pulse' />
+      </section>
+
+      {/* FEATURED PRODUCTS */}
+      <section id='products' className='py-16 px-6 bg-surface-cream'>
+        <div className='max-w-6xl mx-auto'>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className='text-center mb-12'
+          >
+            <h2 className='text-3xl md:text-4xl font-headline font-bold text-primary mb-4'>
+              Our Featured Products
+            </h2>
+            <p className='text-lg text-text-muted max-w-2xl mx-auto'>
+              Handcrafted traditional Bengali pickles made with authentic
+              recipes
+            </p>
+          </motion.div>
+
+          {/* Special Offer Banner */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className='mb-8 bg-gradient-to-r from-primary to-primary-light text-on-primary p-4 rounded-2xl shadow-lg text-center'
+          >
+            <div className='flex items-center justify-center gap-3'>
+              <span className='material-symbols-outlined text-2xl'>
+                local_shipping
+              </span>
+              <p className='text-sm md:text-base font-semibold'>
+                🎉 Special Offer: FREE DELIVERY when you buy both 500g products
+                together!
+              </p>
+            </div>
+          </motion.div>
+
+          <div className='grid md:grid-cols-2 gap-8 max-w-5xl mx-auto'>
+            {products.map((product, index) => (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                className='bg-surface rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 group border border-outline/20'
+              >
+                {/* Product Image */}
+                <div className='relative h-72 overflow-hidden bg-gradient-to-br from-surface-cream to-surface-container'>
+                  <img
+                    src={product.image}
+                    alt={product.nameEn}
+                    className='w-full h-full object-contain group-hover:scale-110 transition-transform duration-700'
+                  />
+                  {/* Badges */}
+                  <div className='absolute top-4 left-4 flex flex-col gap-2'>
+                    <motion.div
+                      initial={{ x: -20, opacity: 0 }}
+                      whileInView={{ x: 0, opacity: 1 }}
+                      transition={{ delay: 0.3 }}
+                      className='bg-primary/90 backdrop-blur-sm text-on-primary px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg'
+                    >
+                      <span className='material-symbols-outlined text-sm'>
+                        verified
+                      </span>
+                      Authentic
+                    </motion.div>
+                    {index === 0 && (
+                      <motion.div
+                        initial={{ x: -20, opacity: 0 }}
+                        whileInView={{ x: 0, opacity: 1 }}
+                        transition={{ delay: 0.4 }}
+                        className='bg-accent/90 backdrop-blur-sm text-on-primary px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg'
+                      >
+                        <span
+                          className='material-symbols-outlined text-sm'
+                          style={{ fontVariationSettings: '"FILL" 1' }}
+                        >
+                          star
+                        </span>
+                        Best Seller
+                      </motion.div>
+                    )}
+                  </div>
+                  {/* Rating Badge */}
+                  <div className='absolute top-4 right-4'>
+                    <div className='bg-surface/95 backdrop-blur-sm px-3 py-2 rounded-xl shadow-lg'>
+                      <div className='flex items-center gap-1 mb-1'>
+                        {[...Array(5)].map((_, i) => (
+                          <span
+                            key={i}
+                            className='material-symbols-outlined text-accent text-sm'
+                            style={{ fontVariationSettings: '"FILL" 1' }}
+                          >
+                            star
+                          </span>
+                        ))}
+                      </div>
+                      <p className='text-xs text-text-muted text-center font-semibold'>
+                        5.0
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Product Details */}
+                <div className='p-6'>
+                  {/* Product Names */}
+                  <div className='mb-4'>
+                    <h3 className='text-2xl font-headline font-bold text-primary mb-1.5 leading-tight'>
+                      {product.name}
+                    </h3>
+                    <h4 className='text-lg text-accent font-semibold'>
+                      {product.nameEn}
+                    </h4>
+                  </div>
+
+                  {/* Description */}
+                  <p className='text-sm text-text-muted mb-5 leading-relaxed'>
+                    {product.description}
+                  </p>
+
+                  {/* Divider */}
+                  <div className='border-t border-outline/30 my-5'></div>
+
+                  {/* Pricing Section */}
+                  <div className='mb-5'>
+                    <p className='text-xs font-semibold text-primary/70 uppercase tracking-wide mb-3'>
+                      Choose Your Size
+                    </p>
+                    <div className='grid grid-cols-2 gap-3'>
+                      {product.sizes.map((size, idx) => (
+                        <div
+                          key={idx}
+                          className='bg-gradient-to-br from-surface-container to-surface-container-low border border-outline/20 px-4 py-3.5 rounded-xl text-center hover:border-primary/40 hover:shadow-md transition-all duration-300 cursor-pointer'
+                        >
+                          <div className='text-xs font-medium text-text-muted mb-1'>
+                            {size.weight}
+                          </div>
+                          <div className='text-xl font-bold text-primary'>
+                            {size.price}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* CTA Button */}
+                  <Link
+                    href={`/products/${product.slug}`}
+                    className='w-full bg-gradient-to-r from-primary to-primary-light text-on-primary py-3.5 rounded-full font-bold text-sm text-center hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group'
+                  >
+                    <span>View Details & Order</span>
+                    <span className='material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform'>
+                      arrow_forward
+                    </span>
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* OUR STORY */}
+      <section id='story' className='py-20 px-6 bg-surface'>
+        <div className='max-w-6xl mx-auto'>
+          <div className='grid md:grid-cols-2 gap-12 items-center'>
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <span className='inline-block px-4 py-2 bg-surface-container rounded-full text-sm font-semibold text-primary mb-6'>
+                Our Story
+              </span>
+              <h2 className='text-3xl md:text-5xl font-headline font-bold text-primary mb-6'>
+                Preserving Bengali Heritage, One Jar at a Time
+              </h2>
+              <p className='text-lg text-text-muted mb-6 leading-relaxed'>
+                Swasth-Thik was born from a deep love for traditional Bengali
+                cuisine and a desire to share authentic homemade flavors with
+                food lovers across India.
+              </p>
+              <p className='text-lg text-text-muted mb-6 leading-relaxed'>
+                Every jar of our pickle carries the essence of Bengal – from the
+                carefully selected raw mangoes to the aromatic mustard oil and
+                the perfect blend of traditional spices that have been passed
+                down through generations in our family.
+              </p>
+              <p className='text-lg text-text-muted leading-relaxed'>
+                We believe in the purity of homemade food. No shortcuts, no
+                artificial preservatives – just authentic recipes, quality
+                ingredients, and a whole lot of love.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className='relative flex items-center justify-center'
+            >
+              <div className='relative w-full max-w-md'>
+                <img
+                  src='/mascot.png'
+                  alt='Swasth-Thik - Traditional Bengali Pickles'
+                  className='w-full h-auto drop-shadow-2xl'
+                />
+              </div>
+              {/* Decorative Bengali Pattern */}
+              <div className='absolute -bottom-6 -right-6 w-32 h-32 bg-accent/20 rounded-full blur-2xl' />
+              <div className='absolute -top-6 -left-6 w-24 h-24 bg-primary/20 rounded-full blur-2xl' />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* WHY CHOOSE SWASTH-THIK */}
+      <section className='py-20 px-6 bg-surface-cream'>
+        <div className='max-w-6xl mx-auto'>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className='text-center mb-16'
+          >
+            <h2 className='text-3xl md:text-5xl font-headline font-bold text-primary mb-4'>
+              Why Choose Swasth-Thik?
+            </h2>
+            <p className='text-lg text-text-muted max-w-2xl mx-auto'>
+              What makes our pickles special and authentic
+            </p>
+          </motion.div>
+
+          <div className='grid sm:grid-cols-2 lg:grid-cols-4 gap-6'>
+            {whyChoose.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className='bg-surface p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 text-center group hover:-translate-y-2'
+              >
+                <div className='w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:scale-110 transition-all duration-300'>
+                  <span className='material-symbols-outlined text-4xl text-primary group-hover:text-on-primary'>
+                    {item.icon}
+                  </span>
+                </div>
+                <h3 className='text-xl font-bold text-primary mb-3'>
+                  {item.title}
+                </h3>
+                <p className='text-text-muted leading-relaxed'>
+                  {item.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* HOW WE MAKE IT */}
+      <section className='py-20 px-6 bg-surface'>
+        <div className='max-w-6xl mx-auto'>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className='text-center mb-16'
+          >
+            <h2 className='text-3xl md:text-5xl font-headline font-bold text-primary mb-4'>
+              How We Make It
+            </h2>
+            <p className='text-lg text-text-muted max-w-2xl mx-auto'>
+              Our traditional process from farm to jar
+            </p>
+          </motion.div>
+
+          <div className='relative'>
+            {/* Timeline Line - Desktop (center) */}
+            <div className='absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-outline hidden md:block' />
+
+            {/* Timeline Line - Mobile (left) */}
+            <div className='absolute left-8 top-0 bottom-0 w-0.5 bg-outline md:hidden' />
+
+            <div className='space-y-12'>
+              {process.map((step, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                  className={`flex items-center gap-4 md:gap-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                >
+                  {/* Icon - Mobile (left side) */}
+                  <div className='flex md:hidden w-16 h-16 bg-primary rounded-full items-center justify-center z-10 shadow-lg flex-shrink-0'>
+                    <span className='material-symbols-outlined text-2xl text-on-primary'>
+                      {step.icon}
+                    </span>
+                  </div>
+
+                  {/* Content */}
+                  <div
+                    className={`flex-1 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}
+                  >
+                    <div className='bg-surface-container p-6 rounded-2xl shadow-md w-full md:inline-block'>
+                      <h3 className='text-xl md:text-2xl font-bold text-primary mb-2'>
+                        {step.title}
+                      </h3>
+                      <p className='text-sm md:text-base text-text-muted'>
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Icon - Desktop (center) */}
+                  <div className='hidden md:flex w-16 h-16 bg-primary rounded-full items-center justify-center z-10 shadow-lg flex-shrink-0'>
+                    <span className='material-symbols-outlined text-3xl text-on-primary'>
+                      {step.icon}
+                    </span>
+                  </div>
+
+                  <div className='flex-1 hidden md:block' />
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="relative py-16 md:py-24 bg-surface-container-low" id="reviews">
-        <div className="linen-texture absolute inset-0 pointer-events-none z-0"></div>
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary text-center mb-16">Stories from our Tables</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-10 rounded-[2.5rem] shadow-sm border border-outline-variant/10 relative">
-              <div className="flex text-tertiary mb-6">
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>star</span>
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>star</span>
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>star</span>
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>star</span>
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>star</span>
+      {/* CUSTOMER REVIEWS */}
+      <section
+        id='reviews'
+        className='py-20 px-6 bg-surface-cream relative overflow-hidden'
+      >
+        {/* Background Pattern */}
+        <div className='absolute inset-0 opacity-5'>
+          <div className='absolute top-10 left-10 w-32 h-32 border-4 border-primary rounded-full'></div>
+          <div className='absolute bottom-20 right-20 w-40 h-40 border-4 border-accent rounded-full'></div>
+        </div>
+
+        <div className='max-w-6xl mx-auto relative z-10'>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className='text-center mb-16'
+          >
+            <span className='inline-block px-4 py-2 bg-primary/10 rounded-full text-sm font-semibold text-primary mb-4'>
+              Testimonials
+            </span>
+            <h2 className='text-3xl md:text-5xl font-headline font-bold text-primary mb-4'>
+              What Our Customers Say
+            </h2>
+            <p className='text-lg text-text-muted max-w-2xl mx-auto mb-6'>
+              Love from pickle enthusiasts across India
+            </p>
+            {/* Overall Rating */}
+            <div className='inline-flex items-center gap-3 bg-surface px-6 py-3 rounded-full shadow-lg'>
+              <div className='flex gap-0.5'>
+                {[...Array(5)].map((_, i) => (
+                  <span
+                    key={i}
+                    className='material-symbols-outlined text-accent text-xl'
+                    style={{ fontVariationSettings: '"FILL" 1' }}
+                  >
+                    star
+                  </span>
+                ))}
               </div>
-              <p className="text-on-surface-variant mb-8 leading-relaxed italic">"The Spicy Mango Achar took me straight back to my childhood summers at my Nani's place. The texture and the oiliness are exactly how a real pickle should be."</p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-surface-container-highest overflow-hidden">
-                  <img alt="User Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArMJGLGSakvB4CCzZcnFhQDMQWbizCSytyRvmPcVSNbslZ9ZBaeinxatn_e66NWRJhtwZDkD6j30whthA5zcOjmdvR0f66e0p8wBsKxtUsfO4ItZPCoFTzKmznC26KlmY0oZSnc6vMzh86gc2ekT5wlJTkPO4HOgl3uLE6TWL5a3x2aYv9mGrpwh_hpO8eSiT1isvgel0efWuNhMCot998CJcRRgXs0XAHm5oz9xcGtGeR1dyvXELfs5QrKRV4ewLZxD_qwkZUsbg" />
+              <span className='text-2xl font-bold text-primary'>5.0</span>
+              <span className='text-sm text-text-muted'>from 500+ reviews</span>
+            </div>
+          </motion.div>
+
+          <div className='grid md:grid-cols-3 gap-8'>
+            {reviews.map((review, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+                className='bg-surface p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-outline/20 relative'
+              >
+                {/* Quote Icon */}
+                <div className='absolute top-6 right-6 opacity-10'>
+                  <span className='material-symbols-outlined text-6xl text-primary'>
+                    format_quote
+                  </span>
                 </div>
-                <div>
-                  <h4 className="font-bold text-on-surface">Anjali Sharma</h4>
-                  <p className="text-xs text-on-surface-variant">Mumbai, India</p>
+
+                <div className='flex gap-1 mb-4'>
+                  {[...Array(review.rating)].map((_, i) => (
+                    <span
+                      key={i}
+                      className='material-symbols-outlined text-accent text-xl'
+                      style={{ fontVariationSettings: '"FILL" 1' }}
+                    >
+                      star
+                    </span>
+                  ))}
                 </div>
+                <p className='text-text-muted mb-6 leading-relaxed relative z-10'>
+                  "{review.text}"
+                </p>
+                <div className='flex items-center gap-4 pt-4 border-t border-outline/20'>
+                  <div className='relative'>
+                    <img
+                      src={review.image}
+                      alt={review.name}
+                      className='w-14 h-14 rounded-full object-cover ring-2 ring-primary/20'
+                    />
+                    <div className='absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-surface'></div>
+                  </div>
+                  <div>
+                    <h4 className='font-bold text-primary text-base'>
+                      {review.name}
+                    </h4>
+                    <p className='text-sm text-text-muted flex items-center gap-1'>
+                      <span className='material-symbols-outlined text-xs'>
+                        location_on
+                      </span>
+                      {review.location}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Customer Count */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+            className='mt-12 text-center'
+          >
+            <div className='inline-flex items-center gap-8 bg-surface px-8 py-4 rounded-2xl shadow-lg'>
+              <div className='text-center border-r border-outline/30 pr-8'>
+                <p className='text-3xl font-bold text-primary mb-1'>500+</p>
+                <p className='text-sm text-text-muted'>Happy Customers</p>
+              </div>
+              <div className='text-center border-r border-outline/30 pr-8'>
+                <p className='text-3xl font-bold text-primary mb-1'>1000+</p>
+                <p className='text-sm text-text-muted'>Jars Sold</p>
+              </div>
+              <div className='text-center'>
+                <p className='text-3xl font-bold text-primary mb-1'>5.0</p>
+                <p className='text-sm text-text-muted'>Average Rating</p>
               </div>
             </div>
-            <div className="bg-white p-10 rounded-[2.5rem] shadow-sm border border-outline-variant/10 relative md:translate-y-10">
-              <div className="flex text-tertiary mb-6">
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>star</span>
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>star</span>
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>star</span>
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>star</span>
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>star</span>
-              </div>
-              <p className="text-on-surface-variant mb-8 leading-relaxed italic">"It's rare to find A2 Ghee with this level of granularity and fragrance. I use it every day for my kids. Swasth Thik is now a staple in our home pantry."</p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-surface-container-highest overflow-hidden">
-                  <img alt="User Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqJIVzIKuYdw2Bxeo9jYpdNXu0KSIN5r7u59dFAusCqv5OUCxFk9SQth1d7dgoulMrbdXX9TpjEMwLMsOxljUfzcpLfGU2_2_JYCzvYEi6iRAJKPVHHUe1uDKloSlSHhY0CWg8mbLJgbwWrTMdl2_6rN_lAyOqyXpffgAD2_nUdC2z8oS34ZJFlBdJiHixqmMChMy1XL_cc-cx77zN09Id5QjHj2AYN6LwBnXYNHrq7BIW0v35PJ-ER9yg25DbLC259_kAD1uEJHQ" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* WHATSAPP ORDER CTA */}
+      <section className='py-20 px-6 bg-primary text-on-primary relative overflow-hidden'>
+        <div className='absolute inset-0 opacity-10'>
+          <div
+            className='absolute inset-0'
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            }}
+          />
+        </div>
+
+        <div className='max-w-4xl mx-auto text-center relative z-10'>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <span className='material-symbols-outlined text-6xl mb-6 inline-block'>
+              chat
+            </span>
+            <h2 className='text-3xl md:text-5xl font-headline font-bold mb-6'>
+              Order Directly on WhatsApp
+            </h2>
+            <p className='text-lg mb-10 opacity-90 max-w-2xl mx-auto'>
+              Get instant response, personalized service, and easy ordering.
+              Chat with us now to place your order!
+            </p>
+            <a
+              href={`https://wa.me/919330690128?text=${encodeURIComponent("Hello! I'm interested in ordering SWASTH-THIK Traditional Bengali Pickles.\n\nI would like to know more about:\n• Available products and sizes\n• Current pricing\n• Delivery to my location\n\nThank you!")}`}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='inline-flex items-center gap-3 bg-on-primary text-primary px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition-transform duration-300 shadow-2xl'
+            >
+              <span className='material-symbols-outlined text-2xl'>chat</span>
+              Order Now on WhatsApp
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ SECTION */}
+      <section className='py-20 px-6 bg-surface'>
+        <div className='max-w-4xl mx-auto'>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className='text-center mb-16'
+          >
+            <h2 className='text-3xl md:text-5xl font-headline font-bold text-primary mb-4'>
+              Frequently Asked Questions
+            </h2>
+            <p className='text-lg text-text-muted max-w-2xl mx-auto'>
+              Everything you need to know about our pickles
+            </p>
+          </motion.div>
+
+          <div className='space-y-4'>
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className='bg-surface-container rounded-2xl overflow-hidden shadow-md'
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  className='w-full px-8 py-6 flex items-center justify-between text-left hover:bg-surface-container-high transition-colors'
+                >
+                  <span className='font-bold text-lg text-primary pr-4'>
+                    {faq.question}
+                  </span>
+                  <span className='material-symbols-outlined text-primary flex-shrink-0'>
+                    {openFaq === index ? 'expand_less' : 'expand_more'}
+                  </span>
+                </button>
+                <div
+                  className={`overflow-hidden transition-all duration-300 ${
+                    openFaq === index ? 'max-h-96' : 'max-h-0'
+                  }`}
+                >
+                  <div className='px-8 pb-6 text-text-muted leading-relaxed'>
+                    {faq.answer}
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-bold text-on-surface">Dr. Rajesh Khanna</h4>
-                  <p className="text-xs text-on-surface-variant">Bangalore, India</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-white p-10 rounded-[2.5rem] shadow-sm border border-outline-variant/10 relative">
-              <div className="flex text-tertiary mb-6">
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>star</span>
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>star</span>
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>star</span>
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>star</span>
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>star</span>
-              </div>
-              <p className="text-on-surface-variant mb-8 leading-relaxed italic">"The Rhododendron squash is a revelation! It's so refreshing and you can actually taste the flowers. Love that it's not overly sweet like commercial ones."</p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-surface-container-highest overflow-hidden">
-                  <img alt="User Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHoS4ouDyWPrybL6knM04JWJIC_Wrqkqx0uRYK5flyxCSL61J7dQPYp6wcjG11JkfYTc9s82e0kUS3vlaBY9i9bdZ1WtWZChq5BVFxmsZ2zBl2cB6yAz8p8Bf8TqKCZffVS_hbUxc7boWg_ShsHmMsLfv-NJswsurtEPChlNL5C6nyXEdsZ5EzEjScXpoomlrJ4Y83v1RVVfAMUjbD1t2cas0GjkiAHsfl61UR_S1Q5h_Yxxcd4HChZQMCIcPQBBBg0rWnemxxc7Q" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-on-surface">Priya Verma</h4>
-                  <p className="text-xs text-on-surface-variant">Delhi, India</p>
-                </div>
-              </div>
-            </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
-    </>
-  );
+    </div>
+  )
 }
