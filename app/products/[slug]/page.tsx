@@ -1,6 +1,4 @@
-'use client'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { notFound } from 'next/navigation'
 
 // Product data
@@ -156,10 +154,7 @@ export default async function ProductDetails({
         <div className='max-w-6xl mx-auto'>
           <div className='grid lg:grid-cols-2 gap-12 items-center'>
             {/* Product Image */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
+            <div
               className='relative'
             >
               <div className='aspect-square rounded-3xl overflow-hidden shadow-2xl bg-surface'>
@@ -169,13 +164,10 @@ export default async function ProductDetails({
                   className='w-full h-full object-cover'
                 />
               </div>
-            </motion.div>
+            </div>
 
             {/* Product Info */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+            <div
               className='space-y-6'
             >
               <div>
@@ -272,7 +264,7 @@ export default async function ProductDetails({
                   Back to Home
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -280,11 +272,7 @@ export default async function ProductDetails({
       {/* Ingredients Section */}
       <section className='py-20 px-6 bg-surface'>
         <div className='max-w-6xl mx-auto'>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+          <div
             className='text-center mb-12'
           >
             <h2 className='text-3xl md:text-4xl font-headline font-bold text-primary mb-4'>
@@ -293,16 +281,12 @@ export default async function ProductDetails({
             <p className='text-lg text-text-muted'>
               Only the finest natural ingredients go into every jar
             </p>
-          </motion.div>
+          </div>
 
           <div className='grid sm:grid-cols-2 lg:grid-cols-4 gap-6'>
             {product.ingredients.map((ingredient, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
                 className='bg-surface-container p-6 rounded-2xl text-center'
               >
                 <div className='w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4'>
@@ -314,7 +298,7 @@ export default async function ProductDetails({
                   {ingredient.name}
                 </h3>
                 <p className='text-sm text-text-muted'>{ingredient.desc}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -325,11 +309,7 @@ export default async function ProductDetails({
         <div className='max-w-6xl mx-auto'>
           <div className='grid lg:grid-cols-2 gap-8'>
             {/* Health Benefits */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+            <div
               className='bg-primary text-on-primary p-8 rounded-3xl'
             >
               <h3 className='text-2xl font-headline font-bold mb-6'>
@@ -348,14 +328,10 @@ export default async function ProductDetails({
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
             {/* Our Story */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+            <div
               className='bg-surface p-8 rounded-3xl shadow-lg'
             >
               <h3 className='text-2xl font-headline font-bold text-primary mb-6'>
@@ -382,7 +358,7 @@ export default async function ProductDetails({
                   ))}
                 </ul>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -390,11 +366,7 @@ export default async function ProductDetails({
       {/* WhatsApp CTA */}
       <section className='py-20 px-6 bg-primary text-on-primary'>
         <div className='max-w-4xl mx-auto text-center'>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+          <div
           >
             <span className='material-symbols-outlined text-5xl mb-4 inline-block'>
               shopping_bag
@@ -415,7 +387,7 @@ export default async function ProductDetails({
               <span className='material-symbols-outlined text-2xl'>chat</span>
               Order Now on WhatsApp
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>
