@@ -2,134 +2,10 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { products, whyChoose, process, reviews, faqs, contact } from '@/lib/data'
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
-
-  const products = [
-    {
-      id: 1,
-      slug: 'sweet-mango-pickle',
-      name: 'মিষ্টি আমের আচার',
-      nameEn: 'Sweet Mango Pickle',
-      sizes: [
-        { weight: '200g', price: '₹80' },
-        { weight: '500g', price: '₹180' },
-      ],
-      image: '/sweet-mango-pickle.png',
-      description:
-        'Handcrafted with sun-ripened Bengali mangoes, jaggery, and traditional spices.',
-    },
-    {
-      id: 2,
-      slug: 'spicy-mango-pickle',
-      name: 'ঝাল আমের আচার',
-      nameEn: 'Spicy Mango Pickle',
-      sizes: [
-        { weight: '200g', price: '₹80' },
-        { weight: '500g', price: '₹180' },
-      ],
-      image: '/spicy-mango-pickle.png',
-      description:
-        'Fiery and flavorful traditional Bengali pickle made with raw mangoes, mustard oil, and aromatic spices.',
-    },
-  ]
-
-  const whyChoose = [
-    {
-      icon: 'home',
-      title: 'Homemade',
-      description:
-        'Prepared in small batches in our home kitchen with love and care',
-    },
-    {
-      icon: 'restaurant',
-      title: 'Traditional Bengali Recipe',
-      description: 'Authentic family recipes passed down through generations',
-    },
-    {
-      icon: 'eco',
-      title: 'Quality Ingredients',
-      description:
-        'Only the finest mangoes and pure mustard oil from local sources',
-    },
-    {
-      icon: 'verified',
-      title: 'Hygienic Preparation',
-      description:
-        'Prepared in clean, sanitized conditions following food safety standards',
-    },
-  ]
-
-  const process = [
-    {
-      icon: 'nutrition',
-      title: 'Fresh Mangoes',
-      description: 'Handpicked raw mangoes at peak freshness',
-    },
-    {
-      icon: 'local_florist',
-      title: 'Traditional Spices',
-      description: 'Aromatic blend of Bengali spices',
-    },
-    {
-      icon: 'favorite',
-      title: 'Homemade Preparation',
-      description: 'Lovingly prepared using traditional methods',
-    },
-    {
-      icon: 'package',
-      title: 'Fresh Packaging',
-      description: 'Sealed in clean jars to preserve freshness',
-    },
-  ]
-
-  const reviews = [
-    {
-      name: 'Priya Chatterjee',
-      location: 'Kolkata',
-      image: 'https://i.pravatar.cc/150?img=1',
-      rating: 5,
-      text: 'The sweet mango pickle tastes exactly like my grandmother used to make! The balance of sweetness and spices is perfect.',
-    },
-    {
-      name: 'Amit Das',
-      location: 'Mumbai',
-      image: 'https://i.pravatar.cc/150?img=12',
-      rating: 5,
-      text: 'Best Bengali pickle I have found online! The spicy version has the right amount of heat and the mustard oil flavor is authentic.',
-    },
-    {
-      name: 'Anjali Roy',
-      location: 'Delhi',
-      image: 'https://i.pravatar.cc/150?img=5',
-      rating: 5,
-      text: 'Reminds me of home! The quality is excellent and the taste is genuinely homemade. Will definitely order again.',
-    },
-  ]
-
-  const faqs = [
-    {
-      question: 'What is the shelf life of the pickles?',
-      answer:
-        'Our pickles have a shelf life of 8-12 months when stored properly. Keep them in a cool, dry place away from direct sunlight. Always use a clean, dry spoon to avoid contamination.',
-    },
-    {
-      question: 'How should I store the pickles?',
-      answer:
-        'Store in a cool, dry place away from direct sunlight. Once opened, ensure the lid is tightly closed after each use and always use a clean, dry spoon. Refrigeration is not necessary but can extend freshness.',
-    },
-    {
-      question: 'Do you deliver to my location?',
-      answer:
-        'Currently, we provide delivery services within Kolkata and nearby areas. We use reliable local delivery partners to ensure your pickles reach you fresh and in perfect condition. Same-day or next-day delivery available for most areas in Kolkata.',
-    },
-    {
-      question: 'What ingredients do you use?',
-      answer:
-        'We use only natural ingredients: fresh raw mangoes, pure mustard oil, traditional Bengali spices (mustard seeds, fenugreek, turmeric, red chili), jaggery (for sweet pickle), and salt. No artificial preservatives or colors.',
-    },
-  ]
 
   // JSON-LD structured data for SEO
   const organizationJsonLd = {
@@ -260,7 +136,7 @@ export default function Home() {
                 </span>
               </motion.a>
               <motion.a
-                href={`https://wa.me/919330690128?text=${encodeURIComponent("Hello! I'm interested in ordering SWASTH-THIK Traditional Bengali Pickles.\n\nI would like to know more about:\n• Available products and sizes\n• Current pricing\n• Delivery to my location\n\nThank you!")}`}
+                href={`${contact.whatsappLink}?text=${encodeURIComponent("Hello! I'm interested in ordering SWASTH-THIK Traditional Bengali Pickles.\n\nI would like to know more about:\n• Available products and sizes\n• Current pricing\n• Delivery to my location\n\nThank you!")}`}
                 target='_blank'
                 rel='noopener noreferrer'
                 whileHover={{ scale: 1.05 }}
@@ -821,7 +697,7 @@ export default function Home() {
               Chat with us now to place your order!
             </p>
             <a
-              href={`https://wa.me/919330690128?text=${encodeURIComponent("Hello! I'm interested in ordering SWASTH-THIK Traditional Bengali Pickles.\n\nI would like to know more about:\n• Available products and sizes\n• Current pricing\n• Delivery to my location\n\nThank you!")}`}
+              href={`${contact.whatsappLink}?text=${encodeURIComponent("Hello! I'm interested in ordering SWASTH-THIK Traditional Bengali Pickles.\n\nI would like to know more about:\n• Available products and sizes\n• Current pricing\n• Delivery to my location\n\nThank you!")}`}
               target='_blank'
               rel='noopener noreferrer'
               className='inline-flex items-center gap-3 bg-on-primary text-primary px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition-transform duration-300 shadow-2xl'

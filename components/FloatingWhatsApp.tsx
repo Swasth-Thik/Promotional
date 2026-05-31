@@ -1,5 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
+import { contact } from '@/lib/data'
 
 export default function FloatingWhatsApp() {
   const message = encodeURIComponent(
@@ -8,7 +9,7 @@ export default function FloatingWhatsApp() {
 
   return (
     <motion.a
-      href={`https://wa.me/919330690128?text=${message}`}
+      href={`${contact.whatsappLink}?text=${message}`}
       target='_blank'
       rel='noopener noreferrer'
       initial={{ opacity: 0, scale: 0.8 }}

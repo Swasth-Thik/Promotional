@@ -1,101 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-
-// Product data
-const products = {
-  'sweet-mango-pickle': {
-    id: 1,
-    slug: 'sweet-mango-pickle',
-    name: 'মিষ্টি আমের আচার',
-    nameEn: 'Sweet Mango Pickle',
-    sizes: [
-      { weight: '200g', price: '₹80' },
-      { weight: '500g', price: '₹180' },
-    ],
-    image: '/sweet-mango-pickle.png',
-    description:
-      'Handcrafted with sun-ripened Bengali mangoes, jaggery, and traditional spices. A sweet and tangy delight that brings back childhood memories.',
-    longDescription:
-      "Our Sweet Mango Pickle is a traditional Bengali delicacy made with love using our grandmother's secret recipe. Each mango is carefully selected at peak ripeness, hand-cut, and mixed with aromatic spices and pure jaggery to create the perfect balance of sweet and tangy flavors.",
-    ingredients: [
-      { name: 'Raw Mangoes', desc: 'Sun-ripened Bengali variety' },
-      { name: 'Jaggery', desc: 'Organic, unrefined sweetener' },
-      { name: 'Mustard Oil', desc: 'Cold-pressed, pure' },
-      { name: 'Spices', desc: 'Fenugreek, mustard, turmeric' },
-    ],
-    benefits: [
-      {
-        icon: 'favorite',
-        title: 'Natural Sweetness',
-        desc: 'Made with organic jaggery, no refined sugar',
-      },
-      {
-        icon: 'eco',
-        title: 'Rich in Vitamins',
-        desc: 'Raw mangoes packed with Vitamin C',
-      },
-      {
-        icon: 'spa',
-        title: 'Digestive Aid',
-        desc: 'Traditional spices aid digestion',
-      },
-    ],
-    pairings: [
-      'Dal Chawal (Lentils & Rice)',
-      'Luchi (Bengali Fried Bread)',
-      'Plain Yogurt & Rice',
-      'Paratha',
-    ],
-    story:
-      'This recipe has been passed down through three generations in our family. My grandmother would make this pickle every summer when mangoes were in season. She believed the key to great pickle was patience - letting the mangoes absorb the spices slowly under the warm sun.',
-  },
-  'spicy-mango-pickle': {
-    id: 2,
-    slug: 'spicy-mango-pickle',
-    name: 'ঝাল আমের আচার',
-    nameEn: 'Spicy Mango Pickle',
-    sizes: [
-      { weight: '200g', price: '₹80' },
-      { weight: '500g', price: '₹180' },
-    ],
-    image: '/spicy-mango-pickle.png',
-    description:
-      'Fiery and flavorful traditional Bengali pickle made with raw mangoes, mustard oil, and aromatic spices. Perfect with rice and dal.',
-    longDescription:
-      'Our Spicy Mango Pickle is a bold, authentic Bengali pickle that packs a punch! Made with tart raw mangoes and a special blend of red chilies and traditional spices, this pickle is perfect for those who love heat and authentic flavors.',
-    ingredients: [
-      { name: 'Raw Mangoes', desc: 'Tart, firm Bengali variety' },
-      { name: 'Red Chili', desc: 'Kashmiri & local varieties' },
-      { name: 'Mustard Oil', desc: 'Pure, cold-pressed' },
-      { name: 'Spices', desc: 'Mustard, fenugreek, nigella' },
-    ],
-    benefits: [
-      {
-        icon: 'local_fire_department',
-        title: 'Boosts Metabolism',
-        desc: 'Red chilies help increase metabolism',
-      },
-      {
-        icon: 'health_and_safety',
-        title: 'Anti-inflammatory',
-        desc: 'Turmeric and spices reduce inflammation',
-      },
-      {
-        icon: 'restaurant',
-        title: 'Appetite Stimulant',
-        desc: 'Aromatic spices enhance appetite',
-      },
-    ],
-    pairings: [
-      'Steaming Hot Dal & Rice',
-      'Plain Khichuri',
-      'Fried Fish',
-      'Parathas with Curd',
-    ],
-    story:
-      'The secret to this pickle lies in the quality of mustard oil and the perfect blend of spices. We use only the finest Kashmiri red chilies for color and local chilies for heat, creating a perfect balance that awakens your taste buds without overwhelming them.',
-  },
-}
+import { productsMap as products, contact } from '@/lib/data'
 
 // Generate metadata for each product page
 export async function generateMetadata({
@@ -303,7 +208,7 @@ export default async function ProductDetails({
 
               <div className='flex flex-col sm:flex-row gap-4 pt-4'>
                 <a
-                  href={`https://wa.me/919330690128?text=${encodeURIComponent(`Hello! I'm interested in ordering *${product.nameEn}* (${product.name}).\n\n👉 Product Details:\nhttps://swasththik.vercel.app/products/${product.slug}\n\n📦 Available Sizes:\n• 200g - ₹80\n• 500g - ₹180\n\nPlease confirm:\n✓ Product availability\n✓ Delivery to my location in Kolkata\n✓ Expected delivery time\n\nThank you!`)}`}
+                  href={`${contact.whatsappLink}?text=${encodeURIComponent(`Hello! I'm interested in ordering *${product.nameEn}* (${product.name}).\n\n👉 Product Details:\nhttps://swasththik.vercel.app/products/${product.slug}\n\n📦 Available Sizes:\n• 200g - ₹80\n• 500g - ₹180\n\nPlease confirm:\n✓ Product availability\n✓ Delivery to my location in Kolkata\n✓ Expected delivery time\n\nThank you!`)}`}
                   target='_blank'
                   rel='noopener noreferrer'
                   className='flex-1 bg-primary text-on-primary px-8 py-4 rounded-full font-semibold text-center hover:bg-primary-light transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2'
@@ -433,7 +338,7 @@ export default async function ProductDetails({
               your size and order now via WhatsApp!
             </p>
             <a
-              href={`https://wa.me/919330690128?text=${encodeURIComponent(`Hello! I would like to place an order for *${product.nameEn}* (${product.name}).\n\n👉 Product Details:\nhttps://swasththik.vercel.app/products/${product.slug}\n\n📦 Available Sizes:\n• 200g - ₹80\n• 500g - ₹180\n\n🎁 Special Offer: FREE delivery when purchasing both 500g products together!\n\nPlease confirm:\n✓ Product availability\n✓ Delivery to my location in Kolkata\n✓ Expected delivery time\n\nLooking forward to your response!`)}`}
+              href={`${contact.whatsappLink}?text=${encodeURIComponent(`Hello! I would like to place an order for *${product.nameEn}* (${product.name}).\n\n👉 Product Details:\nhttps://swasththik.vercel.app/products/${product.slug}\n\n📦 Available Sizes:\n• 200g - ₹80\n• 500g - ₹180\n\n🎁 Special Offer: FREE delivery when purchasing both 500g products together!\n\nPlease confirm:\n✓ Product availability\n✓ Delivery to my location in Kolkata\n✓ Expected delivery time\n\nLooking forward to your response!`)}`}
               target='_blank'
               rel='noopener noreferrer'
               className='inline-flex items-center gap-3 bg-on-primary text-primary px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition-transform duration-300 shadow-2xl'

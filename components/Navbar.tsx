@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
+import { contact } from '@/lib/data'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -100,7 +101,7 @@ export default function Navbar() {
               Reviews
             </Link>
             <a
-              href='https://wa.me/919330690128'
+              href={contact.whatsappLink}
               target='_blank'
               rel='noopener noreferrer'
               className='bg-primary text-on-primary px-6 py-2.5 rounded-full font-semibold hover:bg-primary-light transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2'
@@ -214,7 +215,7 @@ export default function Navbar() {
               </Link>
 
               <a
-                href='https://wa.me/919330690128'
+                href={contact.whatsappLink}
                 target='_blank'
                 rel='noopener noreferrer'
                 className='flex items-center justify-center gap-2 px-4 py-3.5 mt-4 bg-primary text-on-primary rounded-xl font-semibold hover:bg-primary-light transition-all shadow-md'

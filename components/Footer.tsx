@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { contact, siteMetadata, footerLinks } from '@/lib/data'
 
 export default function Footer() {
   return (
@@ -9,26 +10,25 @@ export default function Footer() {
           <div className='space-y-6'>
             <div>
               <h3 className='text-2xl font-headline font-bold text-primary mb-1'>
-                SWASTH-THIK
+                {siteMetadata.name}
               </h3>
               <p className='text-xs text-accent tracking-[0.15em] uppercase'>
-                Authentic Recipes, Homemade Goodness
+                {siteMetadata.tagline}
               </p>
             </div>
             <p className='text-sm text-text-muted leading-relaxed'>
-              Traditional Bengali pickles handcrafted with love using authentic
-              family recipes and the finest ingredients.
+              {siteMetadata.shortDescription}
             </p>
             <div className='flex gap-3'>
               <a
-                href='#'
+                href={siteMetadata.socialMedia.facebook}
                 className='w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-all'
                 aria-label='Facebook'
               >
                 <span className='material-symbols-outlined text-lg'>share</span>
               </a>
               <a
-                href='#'
+                href={siteMetadata.socialMedia.instagram}
                 className='w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-all'
                 aria-label='Instagram'
               >
@@ -37,7 +37,7 @@ export default function Footer() {
                 </span>
               </a>
               <a
-                href='mailto:info@swasththik.com'
+                href={`mailto:${contact.email}`}
                 className='w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-all'
                 aria-label='Email'
               >
@@ -52,30 +52,15 @@ export default function Footer() {
               Quick Links
             </h4>
             <nav className='flex flex-col gap-3'>
-              <Link
-                href='/'
-                className='text-text-muted hover:text-primary transition-colors text-sm'
-              >
-                Home
-              </Link>
-              <Link
-                href='/#products'
-                className='text-text-muted hover:text-primary transition-colors text-sm'
-              >
-                Products
-              </Link>
-              <Link
-                href='/#story'
-                className='text-text-muted hover:text-primary transition-colors text-sm'
-              >
-                Our Story
-              </Link>
-              <Link
-                href='/#reviews'
-                className='text-text-muted hover:text-primary transition-colors text-sm'
-              >
-                Reviews
-              </Link>
+              {footerLinks.quickLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className='text-text-muted hover:text-primary transition-colors text-sm'
+                >
+                  {link.label}
+                </Link>
+              ))}
             </nav>
           </div>
 
@@ -90,11 +75,12 @@ export default function Footer() {
                   location_on
                 </span>
                 <p className='leading-relaxed'>
-                  123 Bengali Lane
+                  {contact.address.street}
                   <br />
-                  Kolkata, West Bengal 700001
+                  {contact.address.city}, {contact.address.state}{' '}
+                  {contact.address.zip}
                   <br />
-                  India
+                  {contact.address.country}
                 </p>
               </div>
               <div className='flex items-center gap-2'>
@@ -102,10 +88,10 @@ export default function Footer() {
                   call
                 </span>
                 <a
-                  href='tel:+919330690128'
+                  href={`tel:+${contact.phone}`}
                   className='hover:text-primary transition-colors'
                 >
-                  +91 98765 43210
+                  {contact.phoneDisplay}
                 </a>
               </div>
               <div className='flex items-center gap-2'>
@@ -113,10 +99,10 @@ export default function Footer() {
                   mail
                 </span>
                 <a
-                  href='mailto:info@swasththik.com'
+                  href={`mailto:${contact.email}`}
                   className='hover:text-primary transition-colors'
                 >
-                  info@swasththik.com
+                  {contact.email}
                 </a>
               </div>
             </div>
@@ -132,7 +118,7 @@ export default function Footer() {
               Order via WhatsApp now!
             </p>
             <a
-              href='https://wa.me/919330690128'
+              href={contact.whatsappLink}
               target='_blank'
               rel='noopener noreferrer'
               className='inline-flex items-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-full font-semibold text-sm hover:bg-primary-light transition-all shadow-md hover:shadow-lg'
@@ -148,13 +134,13 @@ export default function Footer() {
           <div className='flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-text-muted'>
             <p>© 2026 Swasth-Thik. All rights reserved.</p>
             <div className='flex gap-6'>
-              <Link href='#' className='hover:text-primary transition-colors'>
+              <Link href='/privacy-policy' className='hover:text-primary transition-colors'>
                 Privacy Policy
               </Link>
-              <Link href='#' className='hover:text-primary transition-colors'>
+              <Link href='/terms-of-service' className='hover:text-primary transition-colors'>
                 Terms of Service
               </Link>
-              <Link href='#' className='hover:text-primary transition-colors'>
+              <Link href='/shipping-info' className='hover:text-primary transition-colors'>
                 Shipping Info
               </Link>
             </div>
