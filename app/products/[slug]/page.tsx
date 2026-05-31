@@ -99,6 +99,44 @@ const products = {
   },
 }
 
+// Generate metadata for each product page
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const product = products[slug as keyof typeof products]
+
+  if (!product) {
+    return {}
+  }
+
+  return {
+    title: `${product.nameEn} (${product.name}) | SWASTH-THIK Traditional Bengali Pickles`,
+    description: product.description,
+    openGraph: {
+      title: `${product.nameEn} - SWASTH-THIK`,
+      description: product.description,
+      images: [
+        {
+          url: `https://swasththik.vercel.app${product.image}`,
+          width: 1200,
+          height: 1200,
+          alt: product.nameEn,
+        },
+      ],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${product.nameEn} - SWASTH-THIK`,
+      description: product.description,
+      images: [`https://swasththik.vercel.app${product.image}`],
+    },
+  }
+}
+
 export default async function ProductDetails({
   params,
 }: {
@@ -219,7 +257,7 @@ export default async function ProductDetails({
 
               <div className='flex flex-col sm:flex-row gap-4 pt-4'>
                 <a
-                  href={`https://wa.me/919330690128?text=${encodeURIComponent(`Hello! I'm interested in ordering *${product.nameEn}* (${product.name}).\n\n🖼️ Product Image:\nhttps://swasththik.vercel.app${product.image}\n\n📦 Available Sizes:\n• 200g - ₹80\n• 500g - ₹180\n\nPlease confirm:\n✓ Product availability\n✓ Delivery to my location in Kolkata\n✓ Expected delivery time\n\nThank you!`)}`}
+                  href={`https://wa.me/919330690128?text=${encodeURIComponent(`Hello! I'm interested in ordering *${product.nameEn}* (${product.name}).\n\n👉 Product Details:\nhttps://swasththik.vercel.app/products/${product.slug}\n\n📦 Available Sizes:\n• 200g - ₹80\n• 500g - ₹180\n\nPlease confirm:\n✓ Product availability\n✓ Delivery to my location in Kolkata\n✓ Expected delivery time\n\nThank you!`)}`}
                   target='_blank'
                   rel='noopener noreferrer'
                   className='flex-1 bg-primary text-on-primary px-8 py-4 rounded-full font-semibold text-center hover:bg-primary-light transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2'
@@ -369,7 +407,7 @@ export default async function ProductDetails({
               your size and order now via WhatsApp!
             </p>
             <a
-              href={`https://wa.me/919330690128?text=${encodeURIComponent(`Hello! I would like to place an order for *${product.nameEn}* (${product.name}).\n\n📦 Available Sizes:\n• 200g - ₹80\n• 500g - ₹180\n\n🎁 Special Offer: FREE delivery when purchasing both 500g products together!\n\nPlease confirm:\n✓ Product availability\n✓ Delivery to my location in Kolkata\n✓ Expected delivery time\n\nLooking forward to your response!`)}`}
+              href={`https://wa.me/919330690128?text=${encodeURIComponent(`Hello! I would like to place an order for *${product.nameEn}* (${product.name}).\n\n👉 Product Details:\nhttps://swasththik.vercel.app/products/${product.slug}\n\n📦 Available Sizes:\n• 200g - ₹80\n• 500g - ₹180\n\n🎁 Special Offer: FREE delivery when purchasing both 500g products together!\n\nPlease confirm:\n✓ Product availability\n✓ Delivery to my location in Kolkata\n✓ Expected delivery time\n\nLooking forward to your response!`)}`}
               target='_blank'
               rel='noopener noreferrer'
               className='inline-flex items-center gap-3 bg-on-primary text-primary px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition-transform duration-300 shadow-2xl'
