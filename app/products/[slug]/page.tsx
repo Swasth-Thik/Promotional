@@ -219,7 +219,7 @@ export default async function ProductDetails({
 
               <div className='flex flex-col sm:flex-row gap-4 pt-4'>
                 <a
-                  href={`https://wa.me/919330690128?text=${encodeURIComponent(`Hello! I'm interested in ordering *${product.nameEn}* (${product.name}).\n\n🖼️ Product Image:\nhttps://swasth-thik.vercel.app${product.image}\n\n📦 Available Sizes:\n• 200g - ₹80\n• 500g - ₹180\n\nPlease confirm:\n✓ Product availability\n✓ Delivery to my location in Kolkata\n✓ Expected delivery time\n\nThank you!`)}`}
+                  href={`https://wa.me/919330690128?text=${encodeURIComponent(`Hello! I'm interested in ordering *${product.nameEn}* (${product.name}).\n\n🖼️ Product Image:\nhttps://swasththik.vercel.app${product.image}\n\n📦 Available Sizes:\n• 200g - ₹80\n• 500g - ₹180\n\nPlease confirm:\n✓ Product availability\n✓ Delivery to my location in Kolkata\n✓ Expected delivery time\n\nThank you!`)}`}
                   target='_blank'
                   rel='noopener noreferrer'
                   className='flex-1 bg-primary text-on-primary px-8 py-4 rounded-full font-semibold text-center hover:bg-primary-light transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2'
