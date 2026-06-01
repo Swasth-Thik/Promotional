@@ -1,8 +1,38 @@
 'use client'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
 import { products, whyChoose, process, reviews, faqs, contact } from '@/lib/data'
+
+// Animated Counter Component
+function AnimatedCounter({ end, duration = 2, suffix = '' }: { end: number; duration?: number; suffix?: string }) {
+  const [count, setCount] = useState(0)
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true })
+
+  useEffect(() => {
+    if (!isInView) return
+
+    let startTime: number | null = null
+    const startValue = 0
+
+    const animate = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime
+      const progress = Math.min((currentTime - startTime) / (duration * 1000), 1)
+
+      const currentCount = Math.floor(progress * (end - startValue) + startValue)
+      setCount(currentCount)
+
+      if (progress < 1) {
+        requestAnimationFrame(animate)
+      }
+    }
+
+    requestAnimationFrame(animate)
+  }, [isInView, end, duration])
+
+  return <span ref={ref}>{count}{suffix}</span>
+}
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
@@ -105,7 +135,9 @@ export default function Home() {
               >
                 star
               </span>
-              <span>500+ Happy Customers</span>
+              <span>
+                <AnimatedCounter end={500} suffix='+ Happy Customers' duration={2} />
+              </span>
               <span className='w-1.5 h-1.5 rounded-full bg-accent'></span>
               <span>100% Authentic</span>
             </motion.div>
@@ -227,7 +259,7 @@ export default function Home() {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className='mb-8 bg-gradient-to-r from-primary to-primary-light text-on-primary p-4 rounded-2xl shadow-lg text-center'
+            className='mb-8 bg-gradient-to-br from-primary via-primary to-[#4A0808] text-on-primary p-4 rounded-2xl shadow-lg text-center'
           >
             <div className='flex items-center justify-center gap-3'>
               <span className='material-symbols-outlined text-2xl'>
@@ -334,19 +366,44 @@ export default function Home() {
                       Choose Your Size
                     </p>
                     <div className='grid grid-cols-2 gap-3'>
-                      {product.sizes.map((size, idx) => (
-                        <div
-                          key={idx}
-                          className='bg-gradient-to-br from-surface-container to-surface-container-low border border-outline/20 px-4 py-3.5 rounded-xl text-center hover:border-primary/40 hover:shadow-md transition-all duration-300 cursor-pointer'
-                        >
-                          <div className='text-xs font-medium text-text-muted mb-1'>
-                            {size.weight}
+                      {product.sizes.map((size, idx) => {
+                        const weight = parseInt(size.weight)
+                        const price = parseInt(size.price.replace('₹', ''))
+                        const per100g = Math.round((price / weight) * 100)
+                        const isBestValue = idx === 1
+
+                        return (
+                          <div
+                            key={idx}
+                            className={`relative rounded-xl p-3 border-2 transition-all hover:shadow-lg cursor-pointer ${
+                              isBestValue
+                                ? 'border-primary bg-surface shadow-sm'
+                                : 'border-accent/30 bg-accent/5'
+                            }`}
+                          >
+                            {isBestValue && (
+                              <div className='absolute -top-2 left-1/2 -translate-x-1/2'>
+                                <span className='bg-primary text-on-primary text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm'>
+                                  Best Value
+                                </span>
+                              </div>
+                            )}
+                            <div className='text-center'>
+                              <div className={`text-base font-bold mb-1 ${
+                                isBestValue ? 'text-primary' : 'text-accent'
+                              }`}>
+                                {size.weight}
+                              </div>
+                              <div className='text-xl font-bold text-primary mb-1'>
+                                {size.price}
+                              </div>
+                              <div className='text-[10px] text-text-muted bg-surface-container px-2 py-0.5 rounded-full inline-block'>
+                                ₹{per100g}/100g
+                              </div>
+                            </div>
                           </div>
-                          <div className='text-xl font-bold text-primary'>
-                            {size.price}
-                          </div>
-                        </div>
-                      ))}
+                        )
+                      })}
                     </div>
                   </div>
 
@@ -381,7 +438,7 @@ export default function Home() {
                 Our Story
               </span>
               <h2 className='text-3xl md:text-5xl font-headline font-bold text-primary mb-6'>
-                Preserving Bengali Heritage, One Jar at a Time
+                Preserving Bengali Heritage, One Pack at a Time
               </h2>
               <p className='text-lg text-text-muted mb-6 leading-relaxed'>
                 Swasth-Thik was born from a deep love for traditional Bengali
@@ -580,8 +637,12 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-              <span className='text-2xl font-bold text-primary'>5.0</span>
-              <span className='text-sm text-text-muted'>from 500+ reviews</span>
+              <span className='text-2xl font-bold text-primary'>
+                <AnimatedCounter end={5} suffix='.0' duration={1.5} />
+              </span>
+              <span className='text-sm text-text-muted'>
+                from <AnimatedCounter end={500} suffix='+' duration={1.5} /> reviews
+              </span>
             </div>
           </motion.div>
 
@@ -648,20 +709,26 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
-            className='mt-12 text-center'
+            className='mt-12'
           >
-            <div className='inline-flex items-center gap-8 bg-surface px-8 py-4 rounded-2xl shadow-lg'>
-              <div className='text-center border-r border-outline/30 pr-8'>
-                <p className='text-3xl font-bold text-primary mb-1'>500+</p>
-                <p className='text-sm text-text-muted'>Happy Customers</p>
+            <div className='flex items-center justify-center gap-4 sm:gap-8 bg-surface px-4 sm:px-8 py-4 rounded-2xl shadow-lg'>
+              <div className='text-center border-r border-outline/30 pr-4 sm:pr-8 flex-1'>
+                <p className='text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-0.5 sm:mb-1'>
+                  <AnimatedCounter end={500} suffix='+' />
+                </p>
+                <p className='text-xs sm:text-sm text-text-muted'>Happy Customers</p>
               </div>
-              <div className='text-center border-r border-outline/30 pr-8'>
-                <p className='text-3xl font-bold text-primary mb-1'>1000+</p>
-                <p className='text-sm text-text-muted'>Jars Sold</p>
+              <div className='text-center border-r border-outline/30 pr-4 sm:pr-8 flex-1'>
+                <p className='text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-0.5 sm:mb-1'>
+                  <AnimatedCounter end={1000} suffix='+' />
+                </p>
+                <p className='text-xs sm:text-sm text-text-muted'>Packs Sold</p>
               </div>
-              <div className='text-center'>
-                <p className='text-3xl font-bold text-primary mb-1'>5.0</p>
-                <p className='text-sm text-text-muted'>Average Rating</p>
+              <div className='text-center flex-1'>
+                <p className='text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-0.5 sm:mb-1'>
+                  <AnimatedCounter end={5} suffix='.0' />
+                </p>
+                <p className='text-xs sm:text-sm text-text-muted'>Average Rating</p>
               </div>
             </div>
           </motion.div>

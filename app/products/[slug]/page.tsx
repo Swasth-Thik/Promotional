@@ -144,46 +144,92 @@ export default async function ProductDetails({
                 </p>
               </div>
 
-              <div className='flex items-center gap-6 py-6 border-y border-outline'>
-                <div className='text-center'>
-                  <span className='material-symbols-outlined text-3xl text-primary mb-2 block'>
-                    home
-                  </span>
-                  <p className='text-xs text-text-muted'>Homemade</p>
+              {/* Feature Highlights with Circular Icons */}
+              <div className='grid grid-cols-2 sm:grid-cols-4 gap-4 py-6'>
+                <div className='flex flex-col items-center text-center'>
+                  <div className='w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center mb-2'>
+                    <span className='material-symbols-outlined text-2xl sm:text-3xl text-primary'>
+                      handshake
+                    </span>
+                  </div>
+                  <p className='text-xs font-semibold text-primary'>Hygienically</p>
+                  <p className='text-xs text-text-muted'>Handmade</p>
                 </div>
-                <div className='text-center border-x border-outline px-6'>
-                  <span className='material-symbols-outlined text-3xl text-primary mb-2 block'>
-                    eco
-                  </span>
-                  <p className='text-xs text-text-muted'>Organic</p>
+                <div className='flex flex-col items-center text-center'>
+                  <div className='w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-accent/10 border-2 border-accent flex items-center justify-center mb-2'>
+                    <span className='material-symbols-outlined text-2xl sm:text-3xl text-accent'>
+                      auto_awesome
+                    </span>
+                  </div>
+                  <p className='text-xs font-semibold text-primary'>Premium</p>
+                  <p className='text-xs text-text-muted'>Ingredients</p>
                 </div>
-                <div className='text-center'>
-                  <span className='material-symbols-outlined text-3xl text-primary mb-2 block'>
-                    verified
-                  </span>
-                  <p className='text-xs text-text-muted'>100% Natural</p>
+                <div className='flex flex-col items-center text-center'>
+                  <div className='w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center mb-2'>
+                    <span className='material-symbols-outlined text-2xl sm:text-3xl text-primary'>
+                      wb_sunny
+                    </span>
+                  </div>
+                  <p className='text-xs font-semibold text-primary'>Sun Dried</p>
+                  <p className='text-xs text-text-muted'>in Barnis</p>
+                </div>
+                <div className='flex flex-col items-center text-center'>
+                  <div className='w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-accent/10 border-2 border-accent flex items-center justify-center mb-2'>
+                    <span className='material-symbols-outlined text-2xl sm:text-3xl text-accent'>
+                      science
+                    </span>
+                  </div>
+                  <p className='text-xs font-semibold text-primary'>No Chemical</p>
+                  <p className='text-xs text-text-muted'>Preservatives</p>
                 </div>
               </div>
 
               {/* Size & Pricing Options */}
               <div className='space-y-3 mb-4'>
-                <p className='text-sm font-semibold text-primary mb-2'>
+                <p className='text-sm font-semibold text-primary mb-3'>
                   Available Sizes:
                 </p>
-                <div className='space-y-2'>
-                  {product.sizes.map((size, idx) => (
-                    <div
-                      key={idx}
-                      className='flex items-center justify-between bg-surface-container px-5 py-3 rounded-xl'
-                    >
-                      <span className='text-base font-medium text-primary'>
-                        {size.weight}
-                      </span>
-                      <span className='text-xl font-bold text-accent'>
-                        {size.price}
-                      </span>
-                    </div>
-                  ))}
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
+                  {product.sizes.map((size, idx) => {
+                    const weight = parseInt(size.weight)
+                    const price = parseInt(size.price.replace('₹', ''))
+                    const per100g = Math.round((price / weight) * 100)
+                    const isBestValue = idx === 1 // 500g is best value
+
+                    return (
+                      <div
+                        key={idx}
+                        className={`relative rounded-2xl p-4 border-2 transition-all hover:shadow-lg ${
+                          isBestValue
+                            ? 'border-primary bg-surface shadow-md'
+                            : 'border-accent/30 bg-accent/5'
+                        }`}
+                      >
+                        {isBestValue && (
+                          <div className='absolute -top-3 left-1/2 -translate-x-1/2'>
+                            <span className='bg-primary text-on-primary text-xs font-bold px-3 py-1 rounded-full shadow-md'>
+                              Best Value
+                            </span>
+                          </div>
+                        )}
+                        <div className='text-center'>
+                          <div className={`text-2xl font-bold mb-1 ${
+                            isBestValue ? 'text-primary' : 'text-accent'
+                          }`}>
+                            {size.weight} Pack
+                          </div>
+                          <div className='flex items-baseline justify-center gap-2 mb-2'>
+                            <span className='text-3xl font-bold text-primary'>
+                              {size.price}
+                            </span>
+                          </div>
+                          <div className='text-xs text-text-muted bg-surface-container px-3 py-1 rounded-full inline-block'>
+                            ₹{per100g}/100g
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
 

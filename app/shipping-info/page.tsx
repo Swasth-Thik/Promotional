@@ -156,20 +156,20 @@ export default function ShippingInfo() {
                 </ul>
 
                 {/* Bundle Offer Promotion */}
-                <div className='bg-gradient-to-r from-primary to-primary-light text-on-primary p-6 rounded-3xl shadow-lg relative overflow-hidden mt-6'>
+                <div className='bg-gradient-to-br from-primary via-primary to-[#4A0808] text-on-primary p-6 rounded-3xl shadow-lg relative overflow-hidden mt-6'>
                   <div className='absolute right-4 bottom-2 opacity-10'>
                     <span className='material-symbols-outlined text-8xl'>local_shipping</span>
                   </div>
                   <h4 className='font-bold text-lg mb-2 flex items-center gap-2'>
-                    <span className='material-symbols-outlined text-accent' style={{ fontVariationSettings: '"FILL" 1' }}>featured_play_list</span>
+                    <span className='material-symbols-outlined text-on-primary' style={{ fontVariationSettings: '"FILL" 1' }}>featured_play_list</span>
                     Special Family Bundle Promo!
                   </h4>
                   <p className='text-sm leading-relaxed opacity-95'>
                     Receive <strong>FREE Delivery</strong> anywhere inside our standard delivery zones when you order our two signature 500g jars together:
                   </p>
-                  <div className='mt-3 font-semibold text-xs flex gap-4 text-accent'>
-                    <span>✓ 1x Sweet Mango Pickle (500g)</span>
-                    <span>✓ 1x Spicy Mango Pickle (500g)</span>
+                  <div className='mt-3 font-semibold text-sm flex flex-col sm:flex-row gap-2 sm:gap-4'>
+                    <span className='bg-white/20 px-3 py-1.5 rounded-lg'>✓ 1x Sweet Mango Pickle (500g)</span>
+                    <span className='bg-white/20 px-3 py-1.5 rounded-lg'>✓ 1x Spicy Mango Pickle (500g)</span>
                   </div>
                 </div>
               </div>
@@ -305,7 +305,7 @@ export default function ShippingInfo() {
           />
         </div>
         <div className='relative z-10 max-w-2xl mx-auto space-y-6'>
-          <h2 className='text-3xl font-headline font-bold'>Ready to Get Your Pickle Jars?</h2>
+          <h2 className='text-3xl font-headline font-bold'>Ready to Get Your Pickle Packs?</h2>
           <p className='opacity-90 text-base leading-relaxed'>
             We deliver handcrafted goodness straight from our kitchen to your table. Let's arrange your sweet and spicy delivery today!
           </p>
