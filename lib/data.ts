@@ -10,6 +10,7 @@ export const products = [
       { weight: '500g', price: '₹180' },
     ],
     image: '/sweet-mango-pickle.png',
+    poster: '/sweet-mango-poster.png',
     description:
       'Handcrafted with sun-ripened Bengali mangoes, jaggery, and traditional spices.',
     longDescription:
@@ -25,16 +26,22 @@ export const products = [
         icon: 'favorite',
         title: 'Natural Sweetness',
         desc: 'Made with organic jaggery, no refined sugar',
+        image: '/sweet_benefit_jaggery.png',
+        stamp: '100% ORGANIC',
       },
       {
         icon: 'eco',
         title: 'Rich in Vitamins',
         desc: 'Raw mangoes packed with Vitamin C',
+        image: '/sweet_benefit_mango.png',
+        stamp: 'IMMUNE SHIELD',
       },
       {
         icon: 'spa',
         title: 'Digestive Aid',
         desc: 'Traditional spices aid digestion',
+        image: '/sweet_benefit_spices.png',
+        stamp: 'GUT FRIENDLY',
       },
     ],
     pairings: [
@@ -56,6 +63,7 @@ export const products = [
       { weight: '500g', price: '₹180' },
     ],
     image: '/spicy-mango-pickle.png',
+    poster: '/spicy-mango-poster.png',
     description:
       'Fiery and flavorful traditional Bengali pickle made with raw mangoes, mustard oil, and aromatic spices.',
     longDescription:
@@ -71,16 +79,22 @@ export const products = [
         icon: 'local_fire_department',
         title: 'Boosts Metabolism',
         desc: 'Red chilies help increase metabolism',
+        image: '/spicy_benefit_chili.png',
+        stamp: 'METABOLISM BOOST',
       },
       {
         icon: 'health_and_safety',
         title: 'Anti-inflammatory',
         desc: 'Turmeric and spices reduce inflammation',
+        image: '/spicy_benefit_turmeric.png',
+        stamp: 'ANTI-INFLAMMATORY',
       },
       {
         icon: 'restaurant',
         title: 'Appetite Stimulant',
         desc: 'Aromatic spices enhance appetite',
+        image: '/spicy_benefit_oil.png',
+        stamp: 'BOLD KACHI GHANI',
       },
     ],
     pairings: [

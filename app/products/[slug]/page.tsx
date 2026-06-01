@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { productsMap as products, contact } from '@/lib/data'
+import ImageZoom from '@/components/ImageZoom'
+import InteractiveIngredients from '@/components/InteractiveIngredients'
+import HealthBenefitsShowcase from '@/components/HealthBenefitsShowcase'
 
 // Generate metadata for each product page
 export async function generateMetadata({
@@ -113,9 +116,7 @@ export default async function ProductDetails({
         <div className='max-w-6xl mx-auto'>
           <div className='grid lg:grid-cols-2 gap-12 items-center'>
             {/* Product Image */}
-            <div
-              className='relative'
-            >
+            <div className='relative w-full'>
               <div className='aspect-square rounded-3xl overflow-hidden shadow-2xl bg-surface'>
                 <img
                   src={product.image}
@@ -144,42 +145,50 @@ export default async function ProductDetails({
                 </p>
               </div>
 
-              {/* Feature Highlights with Circular Icons */}
+              {/* Feature Highlights with Real Illustrated Badges */}
               <div className='grid grid-cols-2 sm:grid-cols-4 gap-4 py-6'>
-                <div className='flex flex-col items-center text-center'>
-                  <div className='w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center mb-2'>
-                    <span className='material-symbols-outlined text-2xl sm:text-3xl text-primary'>
-                      handshake
-                    </span>
+                <div className='flex flex-col items-center text-center group'>
+                  <div className='w-16 h-16 sm:w-20 sm:h-20 rounded-full transition-transform duration-300 group-hover:scale-105 overflow-hidden shadow-sm bg-white border border-outline/10 p-0.5'>
+                    <img
+                      src='/badge_handmade_real.png'
+                      alt='Hygienically Handmade'
+                      className='w-full h-full object-contain scale-[1.12]'
+                    />
                   </div>
-                  <p className='text-xs font-semibold text-primary'>Hygienically</p>
+                  <p className='text-xs font-semibold text-primary mt-1'>Hygienically</p>
                   <p className='text-xs text-text-muted'>Handmade</p>
                 </div>
-                <div className='flex flex-col items-center text-center'>
-                  <div className='w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-accent/10 border-2 border-accent flex items-center justify-center mb-2'>
-                    <span className='material-symbols-outlined text-2xl sm:text-3xl text-accent'>
-                      auto_awesome
-                    </span>
+                <div className='flex flex-col items-center text-center group'>
+                  <div className='w-16 h-16 sm:w-20 sm:h-20 rounded-full transition-transform duration-300 group-hover:scale-105 overflow-hidden shadow-sm bg-white border border-outline/10 p-0.5'>
+                    <img
+                      src='/badge_ingredients_real.png'
+                      alt='Premium Ingredients'
+                      className='w-full h-full object-contain scale-[1.12]'
+                    />
                   </div>
-                  <p className='text-xs font-semibold text-primary'>Premium</p>
+                  <p className='text-xs font-semibold text-primary mt-1'>Premium</p>
                   <p className='text-xs text-text-muted'>Ingredients</p>
                 </div>
-                <div className='flex flex-col items-center text-center'>
-                  <div className='w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center mb-2'>
-                    <span className='material-symbols-outlined text-2xl sm:text-3xl text-primary'>
-                      wb_sunny
-                    </span>
+                <div className='flex flex-col items-center text-center group'>
+                  <div className='w-16 h-16 sm:w-20 sm:h-20 rounded-full transition-transform duration-300 group-hover:scale-105 overflow-hidden shadow-sm bg-white border border-outline/10 p-0.5'>
+                    <img
+                      src='/badge_sun_dried_real.png'
+                      alt='Sun Dried in Barnis'
+                      className='w-full h-full object-contain scale-[1.12]'
+                    />
                   </div>
-                  <p className='text-xs font-semibold text-primary'>Sun Dried</p>
+                  <p className='text-xs font-semibold text-primary mt-1'>Sun Dried</p>
                   <p className='text-xs text-text-muted'>in Barnis</p>
                 </div>
-                <div className='flex flex-col items-center text-center'>
-                  <div className='w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-accent/10 border-2 border-accent flex items-center justify-center mb-2'>
-                    <span className='material-symbols-outlined text-2xl sm:text-3xl text-accent'>
-                      science
-                    </span>
+                <div className='flex flex-col items-center text-center group'>
+                  <div className='w-16 h-16 sm:w-20 sm:h-20 rounded-full transition-transform duration-300 group-hover:scale-105 overflow-hidden shadow-sm bg-white border border-outline/10 p-0.5'>
+                    <img
+                      src='/badge_no_chemicals_real.png'
+                      alt='No Chemical Preservatives'
+                      className='w-full h-full object-contain scale-[1.12]'
+                    />
                   </div>
-                  <p className='text-xs font-semibold text-primary'>No Chemical</p>
+                  <p className='text-xs font-semibold text-primary mt-1'>No Chemical</p>
                   <p className='text-xs text-text-muted'>Preservatives</p>
                 </div>
               </div>
@@ -284,86 +293,157 @@ export default async function ProductDetails({
               Pure Ingredients
             </h2>
             <p className='text-lg text-text-muted'>
-              Only the finest natural ingredients go into every jar
+              Only the finest natural ingredients go into every pouch
             </p>
           </div>
 
-          <div className='grid sm:grid-cols-2 lg:grid-cols-4 gap-6'>
-            {product.ingredients.map((ingredient, index) => (
-              <div
-                key={index}
-                className='bg-surface-container p-6 rounded-2xl text-center'
-              >
-                <div className='w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4'>
-                  <span className='material-symbols-outlined text-2xl text-primary'>
-                    nutrition
-                  </span>
-                </div>
-                <h3 className='font-bold text-primary mb-2'>
-                  {ingredient.name}
-                </h3>
-                <p className='text-sm text-text-muted'>{ingredient.desc}</p>
+          <InteractiveIngredients ingredients={product.ingredients} />
+        </div>
+      </section>
+
+      {/* Editorial Poster Showcase Section */}
+      <section className='py-24 px-6 bg-gradient-to-br from-surface-cream via-surface to-surface-cream border-y border-outline/15 overflow-hidden relative'>
+        <div className='max-w-6xl mx-auto'>
+          <div className='grid lg:grid-cols-12 gap-12 lg:gap-16 items-center'>
+            
+            {/* Left: Premium Storytelling & Editorial Copy */}
+            <div className='lg:col-span-6 space-y-8 text-left'>
+              <div>
+                <span className='inline-flex items-center gap-2 px-3 py-1 bg-accent/10 rounded-full text-xs font-bold text-accent tracking-wider uppercase mb-4'>
+                  <span className='material-symbols-outlined text-[14px]'>auto_awesome</span>
+                  Visual Heritage
+                </span>
+                <h2 className='text-4xl md:text-5xl font-headline font-bold text-primary leading-tight'>
+                  The Canvas of <br />
+                  <span className='text-accent italic font-serif font-normal'>Bengali Tradition</span>
+                </h2>
               </div>
-            ))}
+              
+              <p className='text-lg text-text-muted leading-relaxed font-light'>
+                Every bottle of our <strong className='text-primary font-semibold'>{product.nameEn}</strong> is more than just a pickle—it is a piece of art handcrafted over generations. 
+              </p>
+
+              <blockquote className='border-l-4 border-accent pl-4 italic text-primary/80 bg-accent/5 p-4 rounded-r-xl text-base leading-relaxed'>
+                "Sun-ripened Bengali mangoes, cold-pressed mustard oil, and our grandmother's secret spice mixture, slowly matured under the warm summer sun."
+              </blockquote>
+
+              {/* Editorial list features */}
+              <div className='space-y-4 pt-2'>
+                <div className='flex items-start gap-4'>
+                  <div className='w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary flex-shrink-0 border border-primary/10 shadow-sm'>
+                    <span className='material-symbols-outlined text-xl'>wb_sunny</span>
+                  </div>
+                  <div>
+                    <h4 className='font-bold text-primary text-base'>Sun-Dried Artistry</h4>
+                    <p className='text-sm text-text-muted mt-0.5'>Matured slowly in traditional ceramic 'Barnis' under natural sunlight to capture authentic flavor depth.</p>
+                  </div>
+                </div>
+                <div className='flex items-start gap-4'>
+                  <div className='w-10 h-10 rounded-full bg-accent/5 flex items-center justify-center text-accent flex-shrink-0 border border-accent/10 shadow-sm'>
+                    <span className='material-symbols-outlined text-xl'>nutrition</span>
+                  </div>
+                  <div>
+                    <h4 className='font-bold text-primary text-base'>Handpicked Raw Spices</h4>
+                    <p className='text-sm text-text-muted mt-0.5'>Aromatic mustard seeds, fenugreek, and native red chilies hand-ground in small, hygienic home-batches.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Immersive Poster Showcase with Zoom Magnifier */}
+            <div className='lg:col-span-6 flex flex-col items-center justify-center'>
+              <div className='relative w-full max-w-[540px] group'>
+                
+                {/* 3D background glowing drop shadows */}
+                <div className='absolute -inset-1 bg-gradient-to-tr from-accent/20 to-primary/20 rounded-[32px] blur-2xl opacity-75 group-hover:opacity-100 transition-opacity duration-700 -z-10' />
+                
+                {/* Mockup Frame Container with hover scaling and shadows */}
+                <div className='relative rounded-3xl overflow-hidden bg-surface shadow-2xl border-8 border-surface p-1 transition-all duration-500 ease-out group-hover:scale-[1.03] group-hover:shadow-[0_30px_70px_rgba(0,0,0,0.25)]'>
+                  
+                  {/* Poster Image with Magnifier Zoom Component */}
+                  <ImageZoom
+                    src={product.poster}
+                    alt={`${product.nameEn} Promotional Poster`}
+                  />
+
+                  {/* Micro-interaction helper banner */}
+                  <div className='absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 text-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+                    <p className='text-white text-xs font-semibold tracking-wide flex items-center justify-center gap-1.5'>
+                      <span className='material-symbols-outlined text-sm animate-pulse'>zoom_in</span>
+                      HOVER IMAGE TO MAGNIFY RECIPE DETAILS
+                    </p>
+                  </div>
+
+                </div>
+
+                {/* Aesthetic shadow indicator beneath the frame */}
+                <div className='w-[85%] h-6 bg-black/10 rounded-full blur-xl mx-auto mt-6 opacity-80 group-hover:opacity-100 transition-opacity duration-500' />
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* Benefits & Story Grid */}
-      <section className='py-20 px-6 bg-surface-cream'>
-        <div className='max-w-6xl mx-auto'>
-          <div className='grid lg:grid-cols-2 gap-8'>
-            {/* Health Benefits */}
-            <div
-              className='bg-primary text-on-primary p-8 rounded-3xl'
-            >
-              <h3 className='text-2xl font-headline font-bold mb-6'>
-                Health Benefits
-              </h3>
-              <div className='space-y-6'>
-                {product.benefits.map((benefit, index) => (
-                  <div key={index} className='flex items-start gap-4'>
-                    <span className='material-symbols-outlined text-3xl'>
-                      {benefit.icon}
-                    </span>
-                    <div>
-                      <h4 className='font-bold mb-1'>{benefit.title}</h4>
-                      <p className='text-sm opacity-90'>{benefit.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+      {/* Health & Gut Wellness Showcase Section */}
+      <section className='py-24 px-6 bg-surface-cream border-t border-outline/5'>
+        <div className='max-w-6xl mx-auto space-y-12'>
+          <div className='text-center max-w-2xl mx-auto space-y-4'>
+            <span className='text-xs font-bold tracking-widest text-accent uppercase bg-accent/5 py-1.5 px-4 rounded-full'>
+              Wellness & Nutrition
+            </span>
+            <h2 className='text-3xl sm:text-4xl font-headline font-bold text-primary'>
+              Health & Gut Benefits
+            </h2>
+            <p className='text-sm sm:text-base text-text-muted leading-relaxed font-light'>
+              Our traditional preparation doesn't just taste incredible—it naturally nurtures and protects your body.
+            </p>
+          </div>
 
-            {/* Our Story */}
-            <div
-              className='bg-surface p-8 rounded-3xl shadow-lg'
-            >
-              <h3 className='text-2xl font-headline font-bold text-primary mb-6'>
+          <HealthBenefitsShowcase benefits={product.benefits} />
+        </div>
+      </section>
+
+      {/* Secret Recipe & Pairings Section */}
+      <section className='py-24 px-6 bg-surface border-t border-outline/5'>
+        <div className='max-w-6xl mx-auto'>
+          <div className='grid lg:grid-cols-12 gap-8 lg:gap-12 items-center'>
+            
+            {/* Story (7 cols) */}
+            <div className='lg:col-span-7 space-y-6'>
+              <span className='text-xs font-bold tracking-widest text-primary uppercase bg-primary/5 py-1.5 px-4 rounded-full'>
+                Heritage Story
+              </span>
+              <h3 className='text-3xl font-headline font-bold text-primary'>
                 The Secret Recipe
               </h3>
-              <p className='text-text-muted leading-relaxed mb-6 italic'>
+              <p className='text-base sm:text-lg text-text-muted leading-relaxed italic font-serif font-light'>
                 "{product.story}"
               </p>
-              <div className='bg-surface-container p-4 rounded-xl'>
-                <h4 className='font-bold text-primary mb-3'>
-                  Perfect Pairings:
-                </h4>
-                <ul className='space-y-2'>
-                  {product.pairings.map((pairing, index) => (
-                    <li
-                      key={index}
-                      className='flex items-center gap-2 text-sm text-text-muted'
-                    >
-                      <span className='material-symbols-outlined text-accent text-sm'>
-                        arrow_right
-                      </span>
-                      {pairing}
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </div>
+
+            {/* Pairings (5 cols) */}
+            <div className='lg:col-span-5 bg-surface-cream p-8 rounded-3xl border border-outline/10 shadow-sm space-y-4'>
+              <h4 className='font-headline font-bold text-primary text-xl flex items-center gap-2'>
+                <span className='material-symbols-outlined text-accent'>restaurant</span>
+                Perfect Pairings
+              </h4>
+              <p className='text-xs text-text-muted leading-relaxed'>
+                Elevate your everyday dining. This authentic blend pairs exquisitely with:
+              </p>
+              <ul className='space-y-3 pt-2'>
+                {product.pairings.map((pairing, index) => (
+                  <li
+                    key={index}
+                    className='flex items-center gap-3 text-sm text-primary/85 font-medium'
+                  >
+                    <span className='w-2 h-2 rounded-full bg-accent' />
+                    {pairing}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
           </div>
         </div>
       </section>
