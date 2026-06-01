@@ -320,7 +320,7 @@ export default async function ProductDetails({
               </div>
               
               <p className='text-lg text-text-muted leading-relaxed font-light'>
-                Every bottle of our <strong className='text-primary font-semibold'>{product.nameEn}</strong> is more than just a pickle—it is a piece of art handcrafted over generations. 
+                Every pouch of our <strong className='text-primary font-semibold'>{product.nameEn}</strong> is more than just a pickle—it is a piece of art handcrafted over generations. 
               </p>
 
               <blockquote className='border-l-4 border-accent pl-4 italic text-primary/80 bg-accent/5 p-4 rounded-r-xl text-base leading-relaxed'>

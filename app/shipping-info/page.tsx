@@ -165,7 +165,7 @@ export default function ShippingInfo() {
                     Special Family Bundle Promo!
                   </h4>
                   <p className='text-sm leading-relaxed opacity-95'>
-                    Receive <strong>FREE Delivery</strong> anywhere inside our standard delivery zones when you order our two signature 500g jars together:
+                    Receive <strong>FREE Delivery</strong> anywhere inside our standard delivery zones when you order our two signature 500g packs together:
                   </p>
                   <div className='mt-3 font-semibold text-sm flex flex-col sm:flex-row gap-2 sm:gap-4'>
                     <span className='bg-white/20 px-3 py-1.5 rounded-lg'>✓ 1x Sweet Mango Pickle (500g)</span>
@@ -221,11 +221,11 @@ export default function ShippingInfo() {
                 <ul className='space-y-3 pl-5 list-none'>
                   <li className='flex items-start gap-2.5'>
                     <span className='material-symbols-outlined text-accent text-sm mt-1'>verified</span>
-                    <span><strong>Hermetic Sealing:</strong> Each jar is fully sterilized, filled under clean hygienic conditions, and hermetically sealed to preserve the natural oil and spice barrier.</span>
+                    <span><strong>Hermetic Sealing:</strong> Each pouch is fully sterilized, filled under clean hygienic conditions, and hermetically sealed to preserve the natural oil and spice barrier.</span>
                   </li>
                   <li className='flex items-start gap-2.5'>
                     <span className='material-symbols-outlined text-accent text-sm mt-1'>verified</span>
-                    <span><strong>Transit Cushioning:</strong> We wrap every jar in biodegradable corrugated cushioning and place them in secure, spill-proof delivery outer boxes, protecting them from transit vibration.</span>
+                    <span><strong>Transit Cushioning:</strong> We wrap every pouch in biodegradable corrugated cushioning and place them in secure, spill-proof delivery outer boxes, protecting them from transit vibration.</span>
                   </li>
                 </ul>
               </div>
@@ -270,7 +270,7 @@ export default function ShippingInfo() {
                   <h2 className='text-2xl font-headline font-bold text-primary'>6. Return & Damage Refund Clause</h2>
                 </div>
                 <p className='text-sm md:text-base'>
-                  Due to the perishable, handmade nature of raw pickles, <strong>we are unable to accept general returns or exchanges</strong> once a jar has been delivered and opened.
+                  Due to the perishable, handmade nature of raw pickles, <strong>we are unable to accept general returns or exchanges</strong> once a pouch has been delivered and opened.
                 </p>
                 <div className='bg-surface border border-outline/30 p-5 rounded-2xl text-xs space-y-2.5 leading-relaxed'>
                   <h6 className='font-bold text-primary uppercase tracking-wide flex items-center gap-1.5'>
@@ -278,12 +278,12 @@ export default function ShippingInfo() {
                     Our Transit Guarantee:
                   </h6>
                   <p>
-                    In the highly rare event that your pickle jar arrives damaged, leaking, or broken during transit:
+                    In the highly rare event that your pickle pouch arrives damaged, leaking, or broken during transit:
                   </p>
                   <ol className='list-decimal pl-5 space-y-1.5'>
-                    <li>Take a clear photograph of the damaged jar inside its packaging as soon as you receive it.</li>
+                    <li>Take a clear photograph of the damaged pouch inside its packaging as soon as you receive it.</li>
                     <li>Send the photo directly to our WhatsApp support within <strong>24 hours of delivery</strong>.</li>
-                    <li>Our team will verify the damage immediately and ship a brand new replacement jar completely free of charge, or issue a full refund via UPI.</li>
+                    <li>Our team will verify the damage immediately and ship a brand new replacement pouch completely free of charge, or issue a full refund via UPI.</li>
                   </ol>
                 </div>
               </div>

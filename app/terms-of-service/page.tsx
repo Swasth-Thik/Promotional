@@ -165,7 +165,7 @@ export default function TermsOfService() {
                 <ul className='space-y-2.5 pl-5 list-none'>
                   <li className='flex items-start gap-2'>
                     <span className='material-symbols-outlined text-accent text-sm mt-1'>payments</span>
-                    <span><strong>Pricing structure:</strong> The prices listed on our website (₹80 for 200g jars, ₹180 for 500g jars) are subject to change. Any price change will be updated on the website before you purchase.</span>
+                    <span><strong>Pricing structure:</strong> The prices listed on our website (₹80 for 200g packs, ₹180 for 500g packs) are subject to change. Any price change will be updated on the website before you purchase.</span>
                   </li>
                   <li className='flex items-start gap-2'>
                     <span className='material-symbols-outlined text-accent text-sm mt-1'>eco</span>
@@ -212,7 +212,7 @@ export default function TermsOfService() {
                     CRITICAL CUSTOMER OBLIGATIONS:
                   </h5>
                   <ul className='space-y-2 list-disc pl-5'>
-                    <li>Keep the jars stored in a cool, dark, and dry shelf, away from direct moisture.</li>
+                    <li>Keep the pouches stored in a cool, dark, and dry shelf, away from direct moisture.</li>
                     <li><strong>Always</strong> use a clean, fully dry spoon to serve the pickles. Any moisture introduction will spoil the natural pickle culture.</li>
                     <li>Keep the lid sealed tightly after opening.</li>
                   </ul>

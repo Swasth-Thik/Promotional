@@ -446,7 +446,7 @@ export default function Home() {
                 food lovers across India.
               </p>
               <p className='text-lg text-text-muted mb-6 leading-relaxed'>
-                Every jar of our pickle carries the essence of Bengal – from the
+                Every pouch of our pickle carries the essence of Bengal – from the
                 carefully selected raw mangoes to the aromatic mustard oil and
                 the perfect blend of traditional spices that have been passed
                 down through generations in our family.
@@ -539,7 +539,7 @@ export default function Home() {
               How We Make It
             </h2>
             <p className='text-lg text-text-muted max-w-2xl mx-auto'>
-              Our traditional process from farm to jar
+              Our traditional process from farm to pouch
             </p>
           </motion.div>
 

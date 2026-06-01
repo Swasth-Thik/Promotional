@@ -155,7 +155,7 @@ export const process = [
   {
     icon: 'package',
     title: 'Fresh Packaging',
-    description: 'Sealed in clean jars to preserve freshness',
+    description: 'Sealed in clean pouches to preserve freshness',
   },
 ]
 

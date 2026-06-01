@@ -10,10 +10,10 @@ interface ProductGalleryProps {
 }
 
 export default function ProductGallery({ image, poster, nameEn }: ProductGalleryProps) {
-  const [activeTab, setActiveTab] = useState<'jar' | 'poster'>('jar')
+  const [activeTab, setActiveTab] = useState<'pouch' | 'poster'>('pouch')
   const [isLightboxOpen, setIsLightboxOpen] = useState(false)
 
-  const activeImage = activeTab === 'jar' ? image : poster
+  const activeImage = activeTab === 'pouch' ? image : poster
 
   return (
     <div className='flex flex-col gap-6'>
@@ -32,9 +32,9 @@ export default function ProductGallery({ image, poster, nameEn }: ProductGallery
           >
             <img
               src={activeImage}
-              alt={`${nameEn} - ${activeTab === 'jar' ? 'Product Jar' : 'Promo Poster'}`}
+              alt={`${nameEn} - ${activeTab === 'pouch' ? 'Product Pouch' : 'Promo Poster'}`}
               className={`w-full h-full select-none transition-all duration-500 ${
-                activeTab === 'jar' ? 'object-contain p-8 group-hover:scale-105' : 'object-cover'
+                activeTab === 'pouch' ? 'object-contain p-8 group-hover:scale-105' : 'object-cover'
               }`}
             />
           </motion.div>
@@ -44,9 +44,9 @@ export default function ProductGallery({ image, poster, nameEn }: ProductGallery
         <div className='absolute top-4 left-4 flex flex-col gap-2 pointer-events-none'>
           <span className='bg-primary/95 text-on-primary text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 backdrop-blur-sm'>
             <span className='material-symbols-outlined text-sm'>
-              {activeTab === 'jar' ? 'shopping_bag' : 'auto_awesome'}
+              {activeTab === 'pouch' ? 'shopping_bag' : 'auto_awesome'}
             </span>
-            {activeTab === 'jar' ? 'Product Jar' : 'Special Promotion'}
+            {activeTab === 'pouch' ? 'Product Pouch' : 'Special Promotion'}
           </span>
         </div>
 
@@ -64,11 +64,11 @@ export default function ProductGallery({ image, poster, nameEn }: ProductGallery
 
       {/* Interactive Thumbnails */}
       <div className='grid grid-cols-2 gap-4'>
-        {/* Jar Thumbnail */}
+        {/* Pouch Thumbnail */}
         <button
-          onClick={() => setActiveTab('jar')}
+          onClick={() => setActiveTab('pouch')}
           className={`flex items-center gap-3 p-3 rounded-2xl border-2 transition-all text-left group cursor-pointer ${
-            activeTab === 'jar'
+            activeTab === 'pouch'
               ? 'border-primary bg-primary/5 shadow-md'
               : 'border-outline/20 bg-surface hover:border-accent/40 hover:shadow-sm'
           }`}
@@ -76,13 +76,13 @@ export default function ProductGallery({ image, poster, nameEn }: ProductGallery
           <div className='w-14 h-14 rounded-xl overflow-hidden bg-surface-cream flex-shrink-0 border border-outline/10 p-1 flex items-center justify-center'>
             <img
               src={image}
-              alt='Product Jar Thumbnail'
+              alt='Product Pouch Thumbnail'
               className='w-full h-full object-contain group-hover:scale-110 transition-transform duration-300'
             />
           </div>
           <div>
-            <p className={`text-sm font-bold leading-tight ${activeTab === 'jar' ? 'text-primary' : 'text-text-muted'}`}>
-              Product Jar
+            <p className={`text-sm font-bold leading-tight ${activeTab === 'pouch' ? 'text-primary' : 'text-text-muted'}`}>
+              Product Pouch
             </p>
             <p className='text-xs text-text-muted mt-0.5 opacity-80'>Studio View</p>
           </div>

@@ -179,7 +179,7 @@ export default function PrivacyPolicy() {
                       <span className='material-symbols-outlined text-sm text-accent'>chat</span>
                       Customer Support
                     </h4>
-                    <p className='text-sm'>To answer questions about jar sizes, ingredients, shelf life, or custom pickle requirements via WhatsApp.</p>
+                    <p className='text-sm'>To answer questions about pack sizes, ingredients, shelf life, or custom pickle requirements via WhatsApp.</p>
                   </div>
                 </div>
               </div>
