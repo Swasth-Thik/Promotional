@@ -267,10 +267,12 @@ export default function InteractiveRecipeHearth({
                           {isHovered && (
                             <motion.div
                               layoutId="hearthPairingHandPointer"
-                              transition={{ type: "spring", stiffness: 220, damping: 20 }}
                               className="absolute left-[-32px] text-2xl select-none pointer-events-none"
                               animate={{ x: [0, 5, 0] }}
-                              transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+                              transition={{
+                                x: { repeat: Infinity, duration: 1.2, ease: "easeInOut" },
+                                layout: { type: "spring", stiffness: 220, damping: 20 }
+                              }}
                             >
                               👉
                             </motion.div>
