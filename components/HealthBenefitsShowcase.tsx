@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 interface Benefit {
   icon: string
+  mascot?: string
   title: string
   desc: string
   image: string
@@ -72,17 +73,25 @@ export default function HealthBenefitsShowcase({ benefits }: HealthBenefitsShowc
                     : 'bg-surface-container/40 border-outline/10 hover:bg-surface hover:border-primary/20'
                 }`}
               >
-                {/* Custom glowing circular icon container */}
+                {/* Custom glowing circular mascot container */}
                 <div
-                  className={`w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center border border-outline/5 transition-all duration-300 ${
+                  className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center border border-outline/10 transition-all duration-300 p-1.5 select-none overflow-hidden flex-shrink-0 ${
                     isSelected
-                      ? 'bg-primary text-on-primary shadow-md'
+                      ? 'bg-white shadow-md ring-2 ring-primary/20 scale-105'
                       : 'bg-surface-cream text-primary'
                   }`}
                 >
-                  <span className='material-symbols-outlined text-xl sm:text-2xl'>
-                    {benefit.icon}
-                  </span>
+                  {benefit.mascot ? (
+                    <img
+                      src={benefit.mascot}
+                      alt={benefit.title}
+                      className='w-full h-full object-contain'
+                    />
+                  ) : (
+                    <span className='material-symbols-outlined text-xl sm:text-2xl'>
+                      {benefit.icon}
+                    </span>
+                  )}
                 </div>
 
                 {/* Narrative content block */}

@@ -204,7 +204,7 @@ export default function TermsOfService() {
                   <h2 className='text-2xl font-headline font-bold text-primary'>5. Food Safety & Storage</h2>
                 </div>
                 <p>
-                  Our pickles are made without artificial chemical preservatives or synthetic colors. We rely on traditional preservation methods (mustard oil, sunlight curation, and spice balance) which keep our pickles fresh for <strong>8 to 12 months</strong>.
+                  Our pickles are made with 100% natural, chemical-free ingredients and synthetic-free colors. We rely on traditional curing methods (mustard oil, sunlight curation, and spice balance) which keep our pickles fresh for <strong>8 to 12 months</strong>.
                 </p>
                 <div className='bg-primary/5 border border-primary/20 p-5 rounded-2xl space-y-3 text-sm'>
                   <h5 className='font-bold text-primary flex items-center gap-1.5'>

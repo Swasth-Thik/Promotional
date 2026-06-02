@@ -36,6 +36,18 @@ function AnimatedCounter({ end, duration = 2, suffix = '' }: { end: number; dura
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const [activeTimelineStep, setActiveTimelineStep] = useState(0)
+  const [isAutoplay, setIsAutoplay] = useState(true)
+
+  useEffect(() => {
+    if (!isAutoplay) return
+
+    const timer = setInterval(() => {
+      setActiveTimelineStep((prev) => (prev + 1) % process.length)
+    }, 3500)
+
+    return () => clearInterval(timer)
+  }, [isAutoplay])
 
   // JSON-LD structured data for SEO
   const organizationJsonLd = {
@@ -375,11 +387,10 @@ export default function Home() {
                         return (
                           <div
                             key={idx}
-                            className={`relative rounded-xl p-3 border-2 transition-all hover:shadow-lg cursor-pointer ${
-                              isBestValue
-                                ? 'border-primary bg-surface shadow-sm'
-                                : 'border-accent/30 bg-accent/5'
-                            }`}
+                            className={`relative rounded-xl p-3 border-2 transition-all hover:shadow-lg cursor-pointer ${isBestValue
+                              ? 'border-primary bg-surface shadow-sm'
+                              : 'border-accent/30 bg-accent/5'
+                              }`}
                           >
                             {isBestValue && (
                               <div className='absolute -top-2 left-1/2 -translate-x-1/2'>
@@ -389,9 +400,8 @@ export default function Home() {
                               </div>
                             )}
                             <div className='text-center'>
-                              <div className={`text-base font-bold mb-1 ${
-                                isBestValue ? 'text-primary' : 'text-accent'
-                              }`}>
+                              <div className={`text-base font-bold mb-1 ${isBestValue ? 'text-primary' : 'text-accent'
+                                }`}>
                                 {size.weight}
                               </div>
                               <div className='text-xl font-bold text-primary mb-1'>
@@ -453,7 +463,7 @@ export default function Home() {
               </p>
               <p className='text-lg text-text-muted leading-relaxed'>
                 We believe in the purity of homemade food. No shortcuts, no
-                artificial preservatives – just authentic recipes, quality
+                artificial chemicals – just authentic recipes, quality
                 ingredients, and a whole lot of love.
               </p>
             </motion.div>
@@ -508,10 +518,18 @@ export default function Home() {
                 viewport={{ once: true }}
                 className='bg-surface p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 text-center group hover:-translate-y-2'
               >
-                <div className='w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:scale-110 transition-all duration-300'>
-                  <span className='material-symbols-outlined text-4xl text-primary group-hover:text-on-primary'>
-                    {item.icon}
-                  </span>
+                <div className='w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 border border-outline/10 p-1 shadow-sm group-hover:scale-110 group-hover:shadow-md transition-all duration-300 overflow-hidden flex-shrink-0'>
+                  {item.mascot ? (
+                    <img
+                      src={item.mascot}
+                      alt={item.title}
+                      className='w-full h-full object-contain scale-[1.12]'
+                    />
+                  ) : (
+                    <span className='material-symbols-outlined text-4xl text-primary'>
+                      {item.icon}
+                    </span>
+                  )}
                 </div>
                 <h3 className='text-xl font-bold text-primary mb-3'>
                   {item.title}
@@ -525,73 +543,184 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HOW WE MAKE IT */}
-      <section className='py-20 px-6 bg-surface'>
+      {/* HOW WE MAKE IT - 2X2 INTERACTIVE GRID HUB */}
+      <section className='py-28 px-6 bg-surface-container/20 relative overflow-hidden'>
+        {/* Background decorative warm ambient blurs */}
+        <div className='absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full filter blur-[120px] pointer-events-none' />
+        <div className='absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-sweet/5 rounded-full filter blur-[120px] pointer-events-none' />
+
         <div className='max-w-6xl mx-auto'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className='text-center mb-16'
+            className='text-center mb-20'
           >
-            <h2 className='text-3xl md:text-5xl font-headline font-bold text-primary mb-4'>
+            <span className='text-xs font-bold text-accent-sweet tracking-widest uppercase bg-accent-sweet/10 py-1.5 px-4 rounded-full select-none'>
+              ✨ OUR CRAFTSMANSHIP
+            </span>
+            <h2 className='text-3xl md:text-5xl font-headline font-bold text-primary mt-4 mb-4'>
               How We Make It
             </h2>
             <p className='text-lg text-text-muted max-w-2xl mx-auto'>
-              Our traditional process from farm to pouch
+              Watch our traditional process auto-play, or click any step to explore our traditional Bengali kitchen secrets
             </p>
           </motion.div>
 
-          <div className='relative'>
-            {/* Timeline Line - Desktop (center) */}
-            <div className='absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-outline hidden md:block' />
+          {/* DESKTOP: 2x2 Interactive Grid Hub */}
+          <div className='relative hidden md:block max-w-4xl mx-auto p-8 min-h-[500px]'>
+            {/* The Central Interactive rotating Sun Dial Hub */}
+            <div className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-surface border-4 border-primary/20 shadow-2xl flex items-center justify-center z-25 p-4'>
+              {/* Glowing Ambient ring */}
+              <div className='absolute inset-0 rounded-full bg-primary/5 filter blur-md animate-pulse pointer-events-none' />
 
-            {/* Timeline Line - Mobile (left) */}
-            <div className='absolute left-8 top-0 bottom-0 w-0.5 bg-outline md:hidden' />
+              {/* Inner Circle with Active Mascot illustration */}
+              <div className='w-full h-full rounded-full bg-white border border-outline/10 shadow-inner flex items-center justify-center p-3 relative overflow-hidden'>
+                <motion.img
+                  key={activeTimelineStep}
+                  initial={{ scale: 0.7, opacity: 0, rotate: -15 }}
+                  animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                  transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                  src={process[activeTimelineStep].mascot}
+                  alt={process[activeTimelineStep].title}
+                  className='w-full h-full object-contain'
+                />
+              </div>
 
-            <div className='space-y-12'>
-              {process.map((step, index) => (
+              {/* Rotating Pointer Hand wrapper */}
+              <div className='absolute inset-0 w-full h-full z-30 pointer-events-none'>
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                  className={`flex items-center gap-4 md:gap-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                  animate={{ rotate: [-135, -45, 135, 45][activeTimelineStep] }}
+                  transition={{ type: "spring", stiffness: 120, damping: 14 }}
+                  className='w-full h-full relative'
                 >
-                  {/* Icon - Mobile (left side) */}
-                  <div className='flex md:hidden w-16 h-16 bg-primary rounded-full items-center justify-center z-10 shadow-lg flex-shrink-0'>
-                    <span className='material-symbols-outlined text-2xl text-on-primary'>
-                      {step.icon}
-                    </span>
-                  </div>
-
-                  {/* Content */}
-                  <div
-                    className={`flex-1 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}
+                  <motion.div
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+                    className='absolute right-[-28px] top-1/2 transform -translate-y-1/2 text-4xl select-none pointer-events-none'
                   >
-                    <div className='bg-surface-container p-6 rounded-2xl shadow-md w-full md:inline-block'>
-                      <h3 className='text-xl md:text-2xl font-bold text-primary mb-2'>
+                    👉
+                  </motion.div>
+                </motion.div>
+              </div>
+            </div>
+
+            <div className='grid grid-cols-2 gap-x-32 gap-y-16'>
+              {process.map((step, index) => {
+                const isActive = activeTimelineStep === index;
+                const secretTips = [
+                  "Artisan Tip: We select green mangoes early in the morning when they are crisp and hold their firm shape perfectly during pickling.",
+                  "Spice Secret: We dry-roast each spice separately on an iron tawa before stone-grinding to activate their essential aromatic oils.",
+                  "Sun-drying Tradition: We let the spices and mangoes dry in the summer sun in large clay jars (Barnis) for 3 full days to lock in flavors naturally.",
+                  "Packaged Fresh: We seal our pouches instantly in airtight packages to retain the rich aroma of pure cold-pressed mustard oil."
+                ];
+
+                return (
+                  <motion.div
+                    key={index}
+                    onClick={() => {
+                      setActiveTimelineStep(index);
+                      setIsAutoplay(false);
+                    }}
+                    onMouseEnter={() => {
+                      setActiveTimelineStep(index);
+                      setIsAutoplay(false);
+                    }}
+                    className={`p-6 rounded-3xl border transition-all duration-300 cursor-pointer flex flex-col justify-between min-h-[220px] ${isActive
+                      ? 'bg-surface border-primary shadow-2xl ring-2 ring-primary/5 scale-[1.01]'
+                      : 'bg-surface/50 border-outline/10 hover:bg-surface hover:border-primary/20'
+                      }`}
+                  >
+                    <div>
+                      <span className={`text-[10px] font-bold tracking-wider uppercase mb-1.5 inline-block ${isActive ? 'text-accent-sweet' : 'text-text-muted'
+                        }`}>
+                        Step 0{index + 1}
+                      </span>
+                      <h3 className='text-lg md:text-xl font-bold text-primary mb-2'>
                         {step.title}
                       </h3>
-                      <p className='text-sm md:text-base text-text-muted'>
+                      <p className='text-xs md:text-sm text-text-muted leading-relaxed'>
                         {step.description}
                       </p>
                     </div>
-                  </div>
 
-                  {/* Icon - Desktop (center) */}
-                  <div className='hidden md:flex w-16 h-16 bg-primary rounded-full items-center justify-center z-10 shadow-lg flex-shrink-0'>
-                    <span className='material-symbols-outlined text-3xl text-on-primary'>
-                      {step.icon}
-                    </span>
-                  </div>
-
-                  <div className='flex-1 hidden md:block' />
-                </motion.div>
-              ))}
+                    {/* Artisan Secret tip Quote Drawer */}
+                    {isActive && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className='mt-4 pt-4 border-t border-outline/15 text-left text-[11px] text-primary font-medium italic flex items-start gap-2 bg-primary/5 p-3 rounded-xl'
+                      >
+                        <span className='text-xs flex-shrink-0'>💡</span>
+                        <span>{secretTips[index]}</span>
+                      </motion.div>
+                    )}
+                  </motion.div>
+                );
+              })}
             </div>
+          </div>
+
+          {/* MOBILE: Collapsed Vertical Stepper List */}
+          <div className='md:hidden space-y-6 relative pl-6'>
+            {/* Mobile Timeline Track */}
+            <div className='absolute left-2 top-2 bottom-2 w-0.5 bg-outline/20' />
+
+            {process.map((step, index) => {
+              const isActive = activeTimelineStep === index;
+              const secretTips = [
+                "Artisan Tip: We select green mangoes early in the morning when they are crisp and hold their firm shape perfectly during pickling.",
+                "Spice Secret: We dry-roast each spice separately on an iron tawa before stone-grinding to activate their essential aromatic oils.",
+                "Sun-drying Tradition: We let the spices and mangoes dry in the summer sun in large clay jars (Barnis) for 3 full days to lock in flavors naturally.",
+                "Packaged Fresh: We seal our pouches instantly in airtight packages to retain the rich aroma of pure cold-pressed mustard oil."
+              ];
+
+              return (
+                <div
+                  key={index}
+                  onClick={() => {
+                    setActiveTimelineStep(index);
+                    setIsAutoplay(false);
+                  }}
+                  className='relative flex items-center pl-4 cursor-pointer group'
+                >
+                  {/* Pointing hand pointing 👉 on mobile */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="pointingHandMobileSplit"
+                      className="absolute left-[-22px] z-20 text-xl select-none pointer-events-none"
+                      animate={{ x: [0, 4, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+                    >
+                      👉
+                    </motion.div>
+                  )}
+
+                  <div
+                    className={`w-full p-5 rounded-2xl border transition-all duration-300 ${isActive
+                      ? 'bg-surface border-primary shadow-lg scale-[1.01]'
+                      : 'bg-surface/50 border-outline/10'
+                      }`}
+                  >
+                    <span className={`text-[10px] font-bold tracking-wider uppercase mb-1 inline-block ${isActive ? 'text-accent-sweet' : 'text-text-muted'
+                      }`}>
+                      Step 0{index + 1}
+                    </span>
+                    <h3 className='text-lg font-bold text-primary mb-1'>{step.title}</h3>
+                    <p className='text-xs text-text-muted leading-relaxed mb-3'>{step.description}</p>
+
+                    {isActive && (
+                      <div className='pt-3 border-t border-outline/15 text-left text-[11px] text-primary font-medium italic flex items-start gap-2 bg-primary/5 p-2 rounded-xl'>
+                        <span className='text-xs flex-shrink-0'>💡</span>
+                        <span>{secretTips[index]}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -816,9 +945,8 @@ export default function Home() {
                   </span>
                 </button>
                 <div
-                  className={`overflow-hidden transition-all duration-300 ${
-                    openFaq === index ? 'max-h-96' : 'max-h-0'
-                  }`}
+                  className={`overflow-hidden transition-all duration-300 ${openFaq === index ? 'max-h-96' : 'max-h-0'
+                    }`}
                 >
                   <div className='px-8 pb-6 text-text-muted leading-relaxed'>
                     {faq.answer}

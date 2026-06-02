@@ -4,6 +4,7 @@ import { productsMap as products, contact } from '@/lib/data'
 import ImageZoom from '@/components/ImageZoom'
 import InteractiveIngredients from '@/components/InteractiveIngredients'
 import HealthBenefitsShowcase from '@/components/HealthBenefitsShowcase'
+import InteractiveRecipeHearth from '@/components/InteractiveRecipeHearth'
 
 // Generate metadata for each product page
 export async function generateMetadata({
@@ -146,7 +147,7 @@ export default async function ProductDetails({
               </div>
 
               {/* Feature Highlights with Real Illustrated Badges */}
-              <div className='grid grid-cols-2 sm:grid-cols-4 gap-4 py-6'>
+              <div className='grid grid-cols-4 gap-4 py-2 lg:py-6'>
                 <div className='flex flex-col items-center text-center group'>
                   <div className='w-16 h-16 sm:w-20 sm:h-20 rounded-full transition-transform duration-300 group-hover:scale-105 overflow-hidden shadow-sm bg-white border border-outline/10 p-0.5'>
                     <img
@@ -184,12 +185,12 @@ export default async function ProductDetails({
                   <div className='w-16 h-16 sm:w-20 sm:h-20 rounded-full transition-transform duration-300 group-hover:scale-105 overflow-hidden shadow-sm bg-white border border-outline/10 p-0.5'>
                     <img
                       src='/badge_no_chemicals_real.png'
-                      alt='No Chemical Preservatives'
+                      alt='100% Natural Curing'
                       className='w-full h-full object-contain scale-[1.12]'
                     />
                   </div>
-                  <p className='text-xs font-semibold text-primary mt-1'>No Chemical</p>
-                  <p className='text-xs text-text-muted'>Preservatives</p>
+                  <p className='text-xs font-semibold text-primary mt-1'>100% Natural</p>
+                  <p className='text-xs text-text-muted'>Curing</p>
                 </div>
               </div>
 
@@ -208,11 +209,10 @@ export default async function ProductDetails({
                     return (
                       <div
                         key={idx}
-                        className={`relative rounded-2xl p-4 border-2 transition-all hover:shadow-lg ${
-                          isBestValue
-                            ? 'border-primary bg-surface shadow-md'
-                            : 'border-accent/30 bg-accent/5'
-                        }`}
+                        className={`relative rounded-2xl p-4 border-2 transition-all hover:shadow-lg ${isBestValue
+                          ? 'border-primary bg-surface shadow-md'
+                          : 'border-accent/30 bg-accent/5'
+                          }`}
                       >
                         {isBestValue && (
                           <div className='absolute -top-3 left-1/2 -translate-x-1/2'>
@@ -222,9 +222,8 @@ export default async function ProductDetails({
                           </div>
                         )}
                         <div className='text-center'>
-                          <div className={`text-2xl font-bold mb-1 ${
-                            isBestValue ? 'text-primary' : 'text-accent'
-                          }`}>
+                          <div className={`text-2xl font-bold mb-1 ${isBestValue ? 'text-primary' : 'text-accent'
+                            }`}>
                             {size.weight} Pack
                           </div>
                           <div className='flex items-baseline justify-center gap-2 mb-2'>
@@ -305,7 +304,7 @@ export default async function ProductDetails({
       <section className='py-24 px-6 bg-gradient-to-br from-surface-cream via-surface to-surface-cream border-y border-outline/15 overflow-hidden relative'>
         <div className='max-w-6xl mx-auto'>
           <div className='grid lg:grid-cols-12 gap-12 lg:gap-16 items-center'>
-            
+
             {/* Left: Premium Storytelling & Editorial Copy */}
             <div className='lg:col-span-6 space-y-8 text-left'>
               <div>
@@ -318,13 +317,13 @@ export default async function ProductDetails({
                   <span className='text-accent italic font-serif font-normal'>Bengali Tradition</span>
                 </h2>
               </div>
-              
+
               <p className='text-lg text-text-muted leading-relaxed font-light'>
-                Every pouch of our <strong className='text-primary font-semibold'>{product.nameEn}</strong> is more than just a pickle—it is a piece of art handcrafted over generations. 
+                Every pouch of our <strong className='text-primary font-semibold'>{product.nameEn}</strong> is more than just a pickle—it is a piece of art handcrafted over generations.
               </p>
 
               <blockquote className='border-l-4 border-accent pl-4 italic text-primary/80 bg-accent/5 p-4 rounded-r-xl text-base leading-relaxed'>
-                "Sun-ripened Bengali mangoes, cold-pressed mustard oil, and our grandmother's secret spice mixture, slowly matured under the warm summer sun."
+                "Sun-ripened Bengali mangoes, cold-pressed mustard oil, and our time-honored secret spice mixture, slowly matured under the warm summer sun."
               </blockquote>
 
               {/* Editorial list features */}
@@ -353,13 +352,13 @@ export default async function ProductDetails({
             {/* Right: Immersive Poster Showcase with Zoom Magnifier */}
             <div className='lg:col-span-6 flex flex-col items-center justify-center'>
               <div className='relative w-full max-w-[540px] group'>
-                
+
                 {/* 3D background glowing drop shadows */}
                 <div className='absolute -inset-1 bg-gradient-to-tr from-accent/20 to-primary/20 rounded-[32px] blur-2xl opacity-75 group-hover:opacity-100 transition-opacity duration-700 -z-10' />
-                
+
                 {/* Mockup Frame Container with hover scaling and shadows */}
                 <div className='relative rounded-3xl overflow-hidden bg-surface shadow-2xl border-8 border-surface p-1 transition-all duration-500 ease-out group-hover:scale-[1.03] group-hover:shadow-[0_30px_70px_rgba(0,0,0,0.25)]'>
-                  
+
                   {/* Poster Image with Magnifier Zoom Component */}
                   <ImageZoom
                     src={product.poster}
@@ -405,46 +404,29 @@ export default async function ProductDetails({
       </section>
 
       {/* Secret Recipe & Pairings Section */}
-      <section className='py-24 px-6 bg-surface border-t border-outline/5'>
-        <div className='max-w-6xl mx-auto'>
-          <div className='grid lg:grid-cols-12 gap-8 lg:gap-12 items-center'>
-            
-            {/* Story (7 cols) */}
-            <div className='lg:col-span-7 space-y-6'>
-              <span className='text-xs font-bold tracking-widest text-primary uppercase bg-primary/5 py-1.5 px-4 rounded-full'>
-                Heritage Story
-              </span>
-              <h3 className='text-3xl font-headline font-bold text-primary'>
-                The Secret Recipe
-              </h3>
-              <p className='text-base sm:text-lg text-text-muted leading-relaxed italic font-serif font-light'>
-                "{product.story}"
-              </p>
-            </div>
+      <section className='py-24 px-6 bg-surface-container/10 border-t border-outline/5 relative overflow-hidden'>
+        {/* Ambient background glowing details */}
+        <div className='absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/5 rounded-full filter blur-[120px] pointer-events-none' />
 
-            {/* Pairings (5 cols) */}
-            <div className='lg:col-span-5 bg-surface-cream p-8 rounded-3xl border border-outline/10 shadow-sm space-y-4'>
-              <h4 className='font-headline font-bold text-primary text-xl flex items-center gap-2'>
-                <span className='material-symbols-outlined text-accent'>restaurant</span>
-                Perfect Pairings
-              </h4>
-              <p className='text-xs text-text-muted leading-relaxed'>
-                Elevate your everyday dining. This authentic blend pairs exquisitely with:
-              </p>
-              <ul className='space-y-3 pt-2'>
-                {product.pairings.map((pairing, index) => (
-                  <li
-                    key={index}
-                    className='flex items-center gap-3 text-sm text-primary/85 font-medium'
-                  >
-                    <span className='w-2 h-2 rounded-full bg-accent' />
-                    {pairing}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
+        <div className='max-w-6xl mx-auto text-center'>
+          <div className='mb-16'>
+            <span className='text-xs font-bold tracking-widest text-accent uppercase bg-accent/10 py-1.5 px-4 rounded-full select-none'>
+              ✨ THE SECRET RECIPE
+            </span>
+            <h2 className='text-3xl md:text-5xl font-headline font-bold text-primary mt-4 mb-3'>
+              Generational Heritage
+            </h2>
+            <p className='text-sm sm:text-base text-text-muted max-w-xl mx-auto'>
+              Explore our traditional family story, pure natural ingredients, and perfect visual pairings
+            </p>
           </div>
+
+          <InteractiveRecipeHearth
+            slug={product.slug}
+            story={product.story}
+            image={product.image}
+            pairings={product.pairings}
+          />
         </div>
       </section>
 

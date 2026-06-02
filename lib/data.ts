@@ -14,7 +14,7 @@ export const products = [
     description:
       'Handcrafted with sun-ripened Bengali mangoes, jaggery, and traditional spices.',
     longDescription:
-      "Our Sweet Mango Pickle is a traditional Bengali delicacy made with love using our grandmother's secret recipe. Each mango is carefully selected at peak ripeness, hand-cut, and mixed with aromatic spices and pure jaggery to create the perfect balance of sweet and tangy flavors.",
+      "Our Sweet Mango Pickle is a traditional Bengali delicacy made with love using our generational family recipe. Each mango is carefully selected at peak ripeness, hand-cut, and mixed with aromatic spices and pure jaggery to create the perfect balance of sweet and tangy flavors.",
     ingredients: [
       { name: 'Raw Mangoes', desc: 'Sun-ripened Bengali variety' },
       { name: 'Jaggery', desc: 'Organic, unrefined sweetener' },
@@ -24,6 +24,7 @@ export const products = [
     benefits: [
       {
         icon: 'favorite',
+        mascot: '/mascot_jaggery.png',
         title: 'Natural Sweetness',
         desc: 'Made with organic jaggery, no refined sugar',
         image: '/sweet_benefit_jaggery.png',
@@ -31,6 +32,7 @@ export const products = [
       },
       {
         icon: 'eco',
+        mascot: '/mascot_raw_mango.png',
         title: 'Rich in Vitamins',
         desc: 'Raw mangoes packed with Vitamin C',
         image: '/sweet_benefit_mango.png',
@@ -38,6 +40,7 @@ export const products = [
       },
       {
         icon: 'spa',
+        mascot: '/mascot_spices.png',
         title: 'Digestive Aid',
         desc: 'Traditional spices aid digestion',
         image: '/sweet_benefit_spices.png',
@@ -51,7 +54,7 @@ export const products = [
       'Paratha',
     ],
     story:
-      'This recipe has been passed down through three generations in our family. My grandmother would make this pickle every summer when mangoes were in season. She believed the key to great pickle was patience - letting the mangoes absorb the spices slowly under the warm sun.',
+      'This recipe has been passed down through three generations in our family. Our founders would make this pickle every summer when mangoes were in season. They believed the key to great pickle was patience - letting the mangoes absorb the spices slowly under the warm sun.',
   },
   {
     id: 2,
@@ -77,6 +80,7 @@ export const products = [
     benefits: [
       {
         icon: 'local_fire_department',
+        mascot: '/mascot_red_chili.png',
         title: 'Boosts Metabolism',
         desc: 'Red chilies help increase metabolism',
         image: '/spicy_benefit_chili.png',
@@ -84,6 +88,7 @@ export const products = [
       },
       {
         icon: 'health_and_safety',
+        mascot: '/mascot_spices.png',
         title: 'Anti-inflammatory',
         desc: 'Turmeric and spices reduce inflammation',
         image: '/spicy_benefit_turmeric.png',
@@ -91,6 +96,7 @@ export const products = [
       },
       {
         icon: 'restaurant',
+        mascot: '/mascot_mustard_oil.png',
         title: 'Appetite Stimulant',
         desc: 'Aromatic spices enhance appetite',
         image: '/spicy_benefit_oil.png',
@@ -112,23 +118,27 @@ export const products = [
 export const whyChoose = [
   {
     icon: 'home',
+    mascot: '/mascot_simple_homemade.png',
     title: 'Homemade',
     description:
       'Prepared in small batches in our home kitchen with love and care',
   },
   {
     icon: 'restaurant',
+    mascot: '/mascot_simple_traditional.png',
     title: 'Traditional Bengali Recipe',
     description: 'Authentic family recipes passed down through generations',
   },
   {
     icon: 'eco',
+    mascot: '/mascot_simple_ingredients.png',
     title: 'Quality Ingredients',
     description:
       'Only the finest mangoes and pure mustard oil from local sources',
   },
   {
     icon: 'verified',
+    mascot: '/mascot_simple_hygiene.png',
     title: 'Hygienic Preparation',
     description:
       'Prepared in clean, sanitized conditions following food safety standards',
@@ -139,21 +149,25 @@ export const whyChoose = [
 export const process = [
   {
     icon: 'nutrition',
+    mascot: '/mascot_simple_mangoes.png',
     title: 'Fresh Mangoes',
     description: 'Handpicked raw mangoes at peak freshness',
   },
   {
     icon: 'local_florist',
+    mascot: '/mascot_simple_spices.png',
     title: 'Traditional Spices',
     description: 'Aromatic blend of Bengali spices',
   },
   {
     icon: 'favorite',
+    mascot: '/mascot_simple_mixing.png',
     title: 'Homemade Preparation',
     description: 'Lovingly prepared using traditional methods',
   },
   {
     icon: 'package',
+    mascot: '/mascot_simple_packaging.png',
     title: 'Fresh Packaging',
     description: 'Sealed in clean pouches to preserve freshness',
   },
@@ -166,7 +180,7 @@ export const reviews = [
     location: 'Kolkata',
     image: 'https://i.pravatar.cc/150?img=1',
     rating: 5,
-    text: 'The sweet mango pickle tastes exactly like my grandmother used to make! The balance of sweetness and spices is perfect.',
+    text: 'The sweet mango pickle tastes exactly like childhood memories of homestyle pickling! The balance of sweetness and spices is perfect.',
   },
   {
     name: 'Amit Das',
@@ -204,7 +218,7 @@ export const faqs = [
   {
     question: 'What ingredients do you use?',
     answer:
-      'We use only natural ingredients: fresh raw mangoes, pure mustard oil, traditional Bengali spices (mustard seeds, fenugreek, turmeric, red chili), jaggery (for sweet pickle), and salt. No artificial preservatives or colors.',
+      'We use only natural ingredients: fresh raw mangoes, pure mustard oil, traditional Bengali spices (mustard seeds, fenugreek, turmeric, red chili), jaggery (for sweet pickle), and salt. Naturally cured and 100% free of artificial chemicals or colors.',
   },
 ]
 
