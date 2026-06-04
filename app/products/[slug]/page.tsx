@@ -184,7 +184,7 @@ export default async function ProductDetails({
                 <div className='flex flex-col items-center text-center group'>
                   <div className='w-16 h-16 sm:w-20 sm:h-20 rounded-full transition-transform duration-300 group-hover:scale-105 overflow-hidden shadow-sm bg-white border border-outline/10 p-0.5'>
                     <img
-                      src='/badge_no_chemicals_real.png'
+                      src='/badge_natural_curing_real.png'
                       alt='100% Natural Curing'
                       className='w-full h-full object-contain scale-[1.12]'
                     />
@@ -247,8 +247,7 @@ export default async function ProductDetails({
                     local_shipping
                   </span>
                   <p className='text-sm text-primary font-medium'>
-                    <strong>Special Offer:</strong> Get FREE delivery when you
-                    purchase both 500g products together!
+                    <strong>Special Offer:</strong> Buy 2 (500g Each) & Enjoy FREE DELIVERY !!
                   </p>
                 </div>
               </div>

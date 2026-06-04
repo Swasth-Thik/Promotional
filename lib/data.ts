@@ -28,7 +28,7 @@ export const products = [
         title: 'Natural Sweetness',
         desc: 'Made with organic jaggery, no refined sugar',
         image: '/sweet_benefit_jaggery.png',
-        stamp: '100% ORGANIC',
+        stamp: 'Freshly Prepared',
       },
       {
         icon: 'eco',

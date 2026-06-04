@@ -209,7 +209,7 @@ export default function Home() {
                 <span className='material-symbols-outlined text-primary text-lg'>
                   eco
                 </span>
-                <span>100% Organic</span>
+                <span>Freshly Prepared</span>
               </div>
               <div className='flex items-center gap-2'>
                 <span className='material-symbols-outlined text-primary text-lg'>
@@ -257,7 +257,7 @@ export default function Home() {
             className='text-center mb-12'
           >
             <h2 className='text-3xl md:text-4xl font-headline font-bold text-primary mb-4'>
-              Our Featured Products
+              Our Products
             </h2>
             <p className='text-lg text-text-muted max-w-2xl mx-auto'>
               Handcrafted traditional Bengali pickles made with authentic
@@ -278,8 +278,7 @@ export default function Home() {
                 local_shipping
               </span>
               <p className='text-sm md:text-base font-semibold'>
-                🎉 Special Offer: FREE DELIVERY when you buy both 500g products
-                together!
+                🎉 Special Offer: Buy 2 (500g Each) & Enjoy FREE DELIVERY !!
               </p>
             </div>
           </motion.div>
